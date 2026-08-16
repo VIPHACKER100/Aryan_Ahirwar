@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Aryan Ahirwar &#x2014; Cybersecurity educator and ethical hacker. Founder & CEO of VIPHACKER.100. Web app pentesting, OSINT, bug bounty, Hindi-language security training.">
+<meta name="theme-color" content="#0a0e0a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Aryan Ahirwar &#x2014; VIPHACKER.100">
+<meta property="og:description" content="Ethical hacker, cybersecurity educator. Web app pentesting, OSINT, bug bounty and Hindi-language security training for Indian beginners.">
+<meta property="og:site_name" content="VIPHACKER.100">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0e0a'/%3E%3Cpath d='M6 20V12h3.2c1.5 0 2.4.5 2.4 2 0 1.4-.9 2-2.4 2H7.3v2.7H6zM7.3 14.4h1.9c.6 0 .8-.3.8-.8s-.2-.8-.8-.8H7.3v1.6z' fill='%2339ff88'/%3E%3Cpath d='M12.6 20v-8H14v8h-1.4z' fill='%2339ff88'/%3E%3Cpath d='M16.5 20v-8h1.4v8h-1.4z' fill='%2339ff88'/%3E%3Cpath d='M19.8 20v-8h3.6v1.4h-2.2V16h2v1.4h-2v2.6h-1.4z' fill='%2339ff88'/%3E%3Cpath d='M25.6 20v-8h3.4v1.4h-2V20h-1.4z' fill='%2339ff88'/%3E%3C/svg%3E">
+<title>Aryan Ahirwar &#x2014; VIPHACKER.100</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== tokens ===== */
+:root{
+  --bg:#0a0e0a; --bg-2:#0d1117; --panel:#111711; --border:#1f2b22;
+  --accent:#39ff88; --accent-dim:rgba(57,255,136,.3);
+  --amber:#ffb454; --cyan:#45c4ff;
+  --text:#d8e6de; --text-dim:#7d8f85;
+  --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
+  --space:6px;
+  --sh-1:0 1px 0 rgba(255,255,255,.04) inset;
+  --sh-2:0 4px 24px -8px rgba(0,0,0,.5),0 1px 0 rgba(255,255,255,.04) inset;
+  --sh-3:0 8px 40px -12px rgba(0,0,0,.6),0 2px 0 rgba(57,255,136,.06) inset;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:15px;line-height:1.6;overflow-x:hidden}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-shadow:0 0 8px var(--accent-dim)}
+h1,h2,h3{font-weight:800;color:#fff;letter-spacing:-1px}
+::selection{background:var(--accent);color:#04120a}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ===== CRT scanline overlay ===== */
+.crt::before{
+  content:" ";position:fixed;inset:0;pointer-events:none;z-index:60;
+  background:repeating-linear-gradient(0deg,transparent 0 2px,rgba(0,0,0,.13) 2px 3px);
+  opacity:.3;mix-blend-mode:multiply;
+}
+
+/* ===== matrix rain (hero, faint) ===== */
+#matrix{position:absolute;inset:0;opacity:.07;filter:blur(1px);pointer-events:none}
+
+/* ===== scroll progress ===== */
+#progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent-dim);z-index:70}
+
+/* ===== nav ===== */
+nav{
+  position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:12px 24px;background:rgba(10,14,10,.88);backdrop-filter:blur(6px);border-bottom:1px solid var(--border);
+}
+.brand{font-weight:800;color:var(--accent);white-space:nowrap}
+.brand .cursor{animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+nav ul{display:flex;gap:24px;list-style:none}
+nav a{color:var(--text-dim);font-size:13px;display:inline-flex;align-items:center;gap:6px}
+nav a::before{content:"$";color:var(--border);font-size:11px}
+nav a.active,nav a:hover{color:var(--accent)}
+nav a.active::before,nav a:hover::before{color:var(--accent)}
+#drawer-btn{display:none;background:none;border:1px solid var(--border);color:var(--accent);font-family:var(--mono);padding:6px 10px;cursor:pointer}
+#drawer{display:none}
+
+/* ===== layout ===== */
+.container{max-width:1040px;margin:0 auto;padding:0 24px}
+section{padding:84px 0}
+.tag{color:var(--accent);font-size:13px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.tag::before{
+  content:"";width:15px;height:15px;display:inline-block;flex:0 0 auto;
+  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 8h11M8 4l4 4-4 4' stroke='%2339ff88' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E") no-repeat center/contain;
+}
+h2{font-size:26px;margin-bottom:36px}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .5s,transform .5s}
+.reveal.in{opacity:1;transform:none}
+
+/* ===== hero ===== */
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:0}
+.hero-inner{position:relative;z-index:2}
+.term{
+  background:var(--bg-2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:30px;max-width:620px;
+  box-shadow:var(--sh-2);
+}
+.term-bar{display:flex;gap:6px;padding:10px 14px;border-bottom:1px solid var(--border);font-size:12px;color:var(--text-dim);align-items:center}
+.term-bar i{width:10px;height:10px;border-radius:50%;display:inline-block;background:#3a4a40}
+.term-bar i:first-child{background:#ff5f57}
+.term-bar i:nth-child(2){background:#febc2e}
+.term-body{padding:16px 18px;font-size:13px;min-height:190px;white-space:pre-wrap}
+.term-body .ln{display:block}
+.term-body .ok{color:var(--accent)}
+.term-body .dim{color:var(--text-dim)}
+.term-body .amber{color:var(--amber)}
+.typing::after{content:"\258C";color:var(--accent);animation:blink 1s steps(2) infinite}
+h1{font-size:clamp(34px,7vw,68px);margin-bottom:12px;font-weight:800;letter-spacing:-2px;line-height:1.05}
+h1 .glow{color:var(--accent);text-shadow:0 0 18px var(--accent-dim)}
+.sub{color:var(--text-dim);font-size:16px;max-width:560px;margin-bottom:34px}
+.ctas{display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  font-family:var(--mono);font-size:14px;padding:12px 22px;border-radius:6px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:box-shadow .2s,transform .2s;
+}
+.btn-primary{background:var(--accent);color:#04120a;font-weight:800;border:1px solid var(--accent)}
+.btn-primary:hover{box-shadow:0 0 24px var(--accent-dim)}
+.btn-outline{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn-outline:hover{box-shadow:0 0 24px var(--accent-dim)}
+.scroll-down{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:var(--text-dim);font-size:12px;animation:float 2s ease-in-out infinite}
+@keyframes float{50%{transform:translate(-50%,8px)}}
+
+/* ===== about / stats ===== */
+.about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:start}
+.stats{background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:24px;box-shadow:var(--sh-2)}
+.stats .row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed var(--border);font-size:13px;align-items:center}
+.stats .row:last-child{border-bottom:none}
+.stats .row span:first-child{display:inline-flex;align-items:center;gap:8px}
+.stats .row span:first-child::before{
+  content:"";width:8px;height:8px;border-radius:1px;display:inline-block;flex:0 0 auto;background:var(--accent);
+  box-shadow:0 0 6px var(--accent-dim);
+}
+.stats .v{color:var(--accent);font-weight:800}
+.placeholder{color:var(--amber)}
+p.body{margin-bottom:16px;color:var(--text)}
+.hl{color:var(--accent)}
+
+/* ===== skills ===== */
+#skills{margin-top:40px}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.skill{background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:18px;transition:border-color .2s;box-shadow:var(--sh-1)}
+.skill:hover{border-color:var(--accent);box-shadow:var(--sh-2)}
+.skill h3{font-size:14px;color:var(--accent);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.skill h3::before{
+  content:"";width:13px;height:13px;display:inline-block;flex:0 0 auto;
+  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 1v14M1 8h14' stroke='%2339ff88' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat center/contain;
+}
+.skill ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.skill li{font-size:11px;padding:4px 10px;border:1px solid var(--border);border-radius:20px;color:var(--text-dim)}
+.badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:3px;margin-left:6px;vertical-align:middle}
+.badge.verified{background:rgba(57,255,136,.12);color:var(--accent);border:1px solid var(--accent)}
+.badge.active{background:rgba(255,180,84,.12);color:var(--amber);border:1px solid var(--amber)}
+.badge.learning{background:rgba(69,196,255,.1);color:var(--cyan);border:1px solid var(--cyan)}
+
+/* ===== projects ===== */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.card{
+  background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:22px;
+  display:flex;flex-direction:column;gap:10px;transition:transform .2s,box-shadow .2s,border-color .2s;box-shadow:var(--sh-1);
+}
+.card:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:var(--sh-3)}
+.card h3{font-size:16px;color:#fff;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.card h3::before{
+  content:"";width:14px;height:14px;display:inline-block;flex:0 0 auto;
+  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 2h6l2 2h4v10H2z' stroke='%2339ff88' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat center/contain;
+}
+.card p{font-size:13px;color:var(--text-dim);flex:1}
+.card .tags{display:flex;flex-wrap:wrap;gap:6px}
+.card .tags span{font-size:11px;color:var(--accent);border:1px solid var(--border);padding:2px 8px;border-radius:4px}
+.card .links{display:flex;gap:14px;font-size:13px}
+.loading{color:var(--text-dim);font-size:13px;grid-column:1/-1;padding:24px}
+.synced{color:var(--text-dim);font-size:12px;margin:14px 0 -8px}
+.more{display:block;margin-top:26px;text-align:center;font-size:14px}
+
+/* ===== training ===== */
+.training-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.train{background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:24px;box-shadow:var(--sh-1)}
+.train h3{font-size:14px;color:var(--accent);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.train h3::before{
+  content:"";width:13px;height:13px;display:inline-block;flex:0 0 auto;
+  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 8l4-4 8 8-4 4z' stroke='%2339ff88' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat center/contain;
+}
+.train p{font-size:13px;color:var(--text-dim)}
+.train .ch{color:var(--amber);font-size:12px}
+.socials{display:flex;gap:16px;flex-wrap:wrap;margin-top:28px}
+.socials a{font-size:13px;border:1px solid var(--border);padding:8px 14px;border-radius:6px}
+.socials a:hover{border-color:var(--accent)}
+
+/* ===== contact ===== */
+#contact form{background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:26px;max-width:560px;margin-bottom:30px;box-shadow:var(--sh-2)}
+label{display:block;font-size:12px;color:var(--accent);margin:14px 0 6px}
+input,textarea{
+  width:100%;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);
+  font-family:var(--mono);font-size:14px;padding:11px 14px;
+}
+input:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+textarea{min-height:120px;resize:vertical}
+.links-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.links-grid a{background:var(--bg-2);border:1px solid var(--border);border-radius:6px;padding:12px 16px;font-size:13px;color:var(--text);display:flex;align-items:center;gap:8px;box-shadow:var(--sh-1)}
+.links-grid a::before{
+  content:"";width:14px;height:14px;display:inline-block;flex:0 0 auto;
+  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 1H2v14h11v-5M9 1h5v5M14 2L6 10' stroke='%2339ff88' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat center/contain;
+}
+.links-grid a:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ===== footer ===== */
+footer{border-top:1px solid var(--border);padding:24px 0;text-align:center;font-size:12px;color:var(--text-dim)}
+footer .h{color:var(--accent);font-weight:800}
+
+/* ===== responsive ===== */
+/* wide screens: cap container */
+@media(min-width:1600px){
+  .container{max-width:1200px}
+}
+/* tablets */
+@media(max-width:1024px){
+  .about-grid{grid-template-columns:1fr;gap:30px}
+  h1{font-size:clamp(30px,6.4vw,56px)}
+}
+/* mobile */
+@media(max-width:760px){
+  nav ul{display:none}
+  #drawer-btn{display:block}
+  #drawer.open{display:flex;flex-direction:column;gap:4px;position:fixed;top:53px;right:12px;background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:8px;z-index:55;min-width:180px}
+  #drawer a{padding:12px 14px;font-size:14px;min-height:44px;display:flex;align-items:center}
+  #drawer-btn{min-height:44px;min-width:44px}
+  .socials a,.links-grid a{padding:14px 16px;min-height:44px}
+  .more{font-size:13px}
+  .about-grid{grid-template-columns:1fr}
+  section{padding:48px 0}
+  .container{padding:0 18px}
+  h2{font-size:22px;margin-bottom:30px}
+  h1{font-size:clamp(26px,8vw,40px)}
+  .sub{font-size:14px}
+  .btn{padding:12px 18px}
+  .term-body{font-size:12px;min-height:170px}
+  .term-bar i{width:9px;height:9px}
+  .ctas{flex-direction:column;align-items:stretch}
+  .ctas .btn{justify-content:center}
+  .links-grid{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+  #contact form{padding:20px}
+  .scroll-down{bottom:18px}
+}
+/* small phones (>=360px) */
+@media(max-width:400px){
+  .container{padding:0 14px}
+  .brand{font-size:13px}
+  .term-body{font-size:11px;padding:14px}
+  .stats{padding:18px}
+  .skill,.train{padding:16px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body class="crt">
+<div id="progress" aria-hidden="true"></div>
+
+<!-- ================= NAV ================= -->
+<nav>
+  <div class="brand">root@VIPHACKER.100:~#<span class="cursor">_</span></div>
+  <ul id="nav-links">
+    <li><a href="#hero" class="active">[about]</a></li>
+    <li><a href="#skills">[skills]</a></li>
+    <li><a href="#projects">[projects]</a></li>
+    <li><a href="#training">[training]</a></li>
+    <li><a href="#contact">[contact]</a></li>
+  </ul>
+  <button id="drawer-btn" aria-label="Open navigation menu">[menu]</button>
+</nav>
+<div id="drawer">
+  <a href="#hero">about</a>
+  <a href="#skills">skills</a>
+  <a href="#projects">projects</a>
+  <a href="#training">training</a>
+  <a href="#contact">contact</a>
+</div>
+
+<!-- ================= HERO ================= -->
+<main>
+<section id="hero">
+  <canvas id="matrix"></canvas>
+  <div class="container hero-inner">
+    <div class="term" aria-hidden="true">
+      <div class="term-bar"><i></i><i></i><i></i><span>recon --VIPHACKER.100</span></div>
+      <div class="term-body" id="log"></div>
+    </div>
+    <h1><span class="glow">VIPHACKER.100</span> <span id="typing">Aryan Ahirwar<span class="cursor">&#x258C;</span></span></h1>
+    <p class="sub">Ethical hacker &#xB7; web app pentesting &#xB7; OSINT &#xB7; bug bounty &#x2014; breaking systems so you can fix them, and teaching Indian beginners to do it the legal way.</p>
+    <div class="ctas">
+      <a class="btn btn-primary" href="#projects"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="1" width="14" height="14" rx="2" stroke="#04120a" stroke-width="2"/><path d="M5 7l3 3 3-3" stroke="#04120a" stroke-width="2" fill="none" stroke-linecap="square"/></svg> View Projects</a>
+      <a class="btn btn-outline" href="#contact"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 14L6 2h1l4 12h-1.4L8 10H5.3L3.6 14H2zm2.6-4.3h2.8L6.2 4.4h-.1z" fill="#39ff88"/></svg> Hire Me / Contact</a>
+    </div>
+  </div>
+  <div class="scroll-down">&#x25BC; scroll</div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="container">
+    <span class="tag">[ whoami ]</span>
+    <div class="about-grid">
+      <div>
+        <h2>Founder &amp; CEO, VIPHACKER.100</h2>
+        <p class="body">I'm <span class="hl">Aryan Ahirwar</span>, a BCA student at SAGE University, Indore, and founder of the <span class="hl">VIPHACKER.100</span> brand (est. July 2023).</p>
+        <p class="body">I build security tools, hunt bugs, and run one mission above all: <span class="hl">Hindi-language cybersecurity education for Indian beginners</span> &#x2014; closing the gap for people who want in but were never reached by English-first content.</p>
+        <p class="body">Based in Shujalpur, Madhya Pradesh.</p>
+      </div>
+      <div class="stats">
+        <div class="row"><span>brand_founded</span><span class="v">2023</span></div>
+        <div class="row"><span>github_repos</span><span class="v" id="stat-repos">..</span></div>
+        <div class="row"><span>github_stars</span><span class="v" id="stat-stars">..</span></div>
+        <div class="row"><span>github_followers</span><span class="v" id="stat-followers">..</span></div>
+        <div class="row"><span>languages_taught_in</span><span class="v">&#x939;&#x93F;&#x928;&#x94D;&#x926;&#x940;</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXPERTISE ================= -->
+<section id="skills">
+  <div class="container">
+    <span class="tag">[ capabilities ]</span>
+    <h2>Expertise</h2>
+    <div class="skills">
+      <div class="skill reveal">
+        <h3>Web App Pentesting <span class="badge verified">[VERIFIED]</span></h3>
+        <ul><li>Burp Suite</li><li>OWASP Top 10</li><li>SQLi</li><li>XSS</li><li>Auth bypass</li></ul>
+      </div>
+      <div class="skill reveal">
+        <h3>OSINT <span class="badge active">[ACTIVE]</span></h3>
+        <ul><li>Recon</li><li>Footprinting</li><li>Asset discovery</li><li>SOCMINT</li></ul>
+      </div>
+      <div class="skill reveal">
+        <h3>Bug Bounty <span class="badge active">[ACTIVE]</span></h3>
+        <ul><li>Disclosure</li><li>Report writing</li><li>Recon tooling</li><li>Scope discipline</li></ul>
+      </div>
+      <div class="skill reveal">
+        <h3>Security Automation <span class="badge verified">[VERIFIED]</span></h3>
+        <ul><li>Scanner dashboards</li><li>Python</li><li>Bash</li><li>API integration</li></ul>
+      </div>
+      <div class="skill reveal">
+        <h3>Scripting &amp; Tooling <span class="badge verified">[VERIFIED]</span></h3>
+        <ul><li>Python</li><li>JavaScript</li><li>CLI tools</li><li>Git/GitHub</li></ul>
+      </div>
+      <div class="skill reveal">
+        <h3>Hindi Cybersecurity Education <span class="badge active">[ACTIVE]</span></h3>
+        <ul><li>YouTube</li><li>Community</li><li>Beginner curricula</li><li>Live streams</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects">
+  <div class="container">
+    <span class="tag">[ ls ./repos ]</span>
+    <h2>Projects</h2>
+    <div class="cards" id="repo-grid"><div class="loading">$ fetching repos from github...</div></div>
+    <div class="synced" id="sync">$ --</div>
+    <a class="more" href="https://github.com/VIPHACKER100">&#x2192; view all on GitHub</a>
+  </div>
+</section>
+
+<!-- ================= TRAINING / COMMUNITY ================= -->
+<section id="training">
+  <div class="container">
+    <span class="tag">[ attack_plan &#x2014; education ]</span>
+    <h2>Hindi Cybersecurity Training</h2>
+    <div class="training-grid">
+      <div class="train reveal">
+        <h3>Free Foundations</h3>
+        <p>Ethical hacking basics for absolute beginners &#x2014; entirely in Hindi. Class targets 100% beginner-friendly.</p>
+      </div>
+      <div class="train reveal">
+        <h3>Web &amp; Pentesting Track</h3>
+        <p>Burp Suite, SQLi, XSS and real-world test methodology from the attacker's perspective.</p>
+      </div>
+      <div class="train reveal">
+        <h3>Career Paths</h3>
+        <p>Bug bounty hunting, OSINT, remediation &#x2014; how to convert skills into income + responsible disclosure.</p>
+      </div>
+    </div>
+    <div class="note placeholder" style="margin-top:16px;font-size:13px">[[ADD student/testimonial stat if real numbers exist]]</div>
+    <div class="socials">
+      <a href="https://www.youtube.com/@viphacker100">&#x25B6; YouTube</a>
+      <a href="https://t.me/viphacker100">&#x2708; Telegram</a>
+      <a href="https://www.instagram.com/viphacker.100/">&#x25CE; Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="container">
+    <span class="tag">[ establish_connection ]</span>
+    <h2>Contact</h2>
+    <form action="mailto:viphacker.100.org@gmail.com" method="post" enctype="text/plain">
+      <label for="name">// name</label>
+      <input type="text" id="name" name="name" placeholder="your_name" required>
+      <label for="email">// email</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      <label for="msg">// message</label>
+      <textarea id="msg" name="message" placeholder="what's the mission?" required></textarea>
+      <button class="btn btn-primary" type="submit" style="margin-top:18px"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 7.5h8.2L7.5 4.7l1.1-1.1L13.8 8l-5.2 4.4-1.1-1.1 2.7-2.8H2z" fill="#04120a"/></svg> transmit</button>
+    </form>
+    <div class="links-grid">
+      <a href="mailto:viphacker.100.org@gmail.com">email &#x2197;</a>
+      <a href="https://github.com/VIPHACKER100">github &#x2197;</a>
+      <a href="https://www.linkedin.com/in/viphacker100/">linkedin &#x2197;</a>
+      <a href="https://www.youtube.com/@viphacker100">youtube &#x2197;</a>
+      <a href="https://www.instagram.com/viphacker.100/">instagram &#x2197;</a>
+      <a href="https://t.me/viphacker100">telegram &#x2197;</a>
+      <a href="https://www.facebook.com/aryan.ahiwar.52">facebook &#x2197;</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div>&#xA9; <span data-year>2026</span> <span class="h">VIPHACKER.100</span> &#x2014; Aryan Ahirwar</div>
+  <div style="margin-top:6px">$ chmod +x curiosity &amp;&amp; keep learning</div>
+</footer>
+
+<script>
+/* ---------- recon log typing animation ---------- */
+const log = document.getElementById('log');
+const LINES = [
+  ['$ whoami','ok'],
+  ['VIPHACKER.100',null],
+  ['$ sudo recon --target unknown',null],
+  ['[+] target acquired :: new_skills',null],
+  ['[+] scanning :: open_ports (web, osint, bounty)',null],
+  ['[+] found 7/7 expl0itable_opportunities',null],
+  ['[+] deploying education payload :: \u0939\u093F\u0928\u094D\u0926\u0940',null],
+  ['[+] connection established \u2014 READY','ok'],
+];
+let li = 0, ci = 0, node = null;
+function typeLine(){
+  if (li >= LINES.length) return;
+  const [text, cls] = LINES[li];
+  if (ci === 0){
+    node = document.createElement('span');
+    node.className = 'ln' + (cls ? ' ' + cls : '');
+    node.classList.add('typing');
+    log.appendChild(node);
+  }
+  node.textContent = text.slice(0, ++ci);
+  if (ci < text.length) setTimeout(typeLine, 12);
+  else { node.classList.remove('typing'); ci = 0; li++; setTimeout(typeLine, 220); }
+}
+typeLine();
+
+/* ---------- matrix rain ---------- */
+const hero = document.getElementById('hero');
+const cv = document.getElementById('matrix');
+if (cv && hero && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const ctx = cv.getContext('2d');
+  const resize = () => { cv.width = hero.offsetWidth; cv.height = hero.offsetHeight; };
+  resize(); addEventListener('resize', resize);
+  const chars = '01\u30A2\u30A4\u30A6\u30A8\u30AA\u30AB\u30AD\u30AF\u30B1\u30B3\u30B5\u30B7\u30B9\u30BB\u30BD\u30BF\u30C1\u30C4\u30C6\u30C8';
+  const fs = 14; let cols, drops;
+  const init = () => { cols = Math.ceil(cv.width / fs); drops = Array(cols).fill(1); };
+  init();
+  setInterval(() => {
+    ctx.fillStyle = 'rgba(10,14,10,.06)'; ctx.fillRect(0,0,cv.width,cv.height);
+    ctx.fillStyle = '#39ff88'; ctx.font = fs + 'px JetBrains Mono';
+    for (let i=0;i<drops.length;i++){
+      ctx.fillText(chars[Math.floor(Math.random()*chars.length)], i*fs, drops[i]*fs);
+      if (drops[i]*fs > cv.height && Math.random() > .975) drops[i] = 0;
+      drops[i]++;
+    }
+  }, 50);
+}
+
+/* ---------- live repos + stats from GitHub API ---------- */
+const BLOCK = ['VIPBOMBER-V2','tbomb','SnapBrute','SocialMediaHackingToolkit','insta-hack','defacement','Activate_Microsoft_Office_All'];
+const DESCS = {
+  'ReconMaster':'Comprehensive reconnaissance framework integrating multiple security tools. Automates subdomain discovery, DNS validation, vulnerability scanning, and reporting.',
+  'VIPSQLi':'Professional, fast, and safe SQL injection triage tool that identifies real SQLi vulnerabilities in 30 seconds \u2014 without exploits or illegal payloads.',
+  'DarkWin-AATK':'Advanced Automation Toolkit for ethical hackers and bug bounty hunters.',
+  'vip-sqli-scanner-dashboard':'Web dashboard for the VIPSQLi scanner engine.',
+  'Inkflow':'AI handwritten-notes generator.',
+  'LLM-COUNCIL':'A five-persona AI council that argues, peer-reviews itself anonymously, and forces a single non-hedging decision \u2014 instead of the usual balanced LLM mush.',
+  'DarkWin-NGASR':'Modular security-research automation platform: 500+ scan modules, AI-powered vulnerability classification, distributed scanning, full web dashboard.',
+  'PhishShield-Engine':'AI-powered email security platform detecting spam, phishing, malicious URLs, homograph spoofing, and identity impersonation.',
+  'BurpSuiteInstaller':'Burp Suite Professional \u2014 latest version installer (2026).',
+  'VIPRecon':'Reconnaissance helper for target enumeration.',
+  'ADVWebRecon':'Advanced web reconnaissance tooling.',
+  'DarkWin-OS-scripts':'Hacker-inspired Windows customization pack for power users and security professionals.',
+  'DARKWIN-OS-SCRIPT':'Windows customization scripting for the DarkWin OS line.',
+  'DarkWin-Os-Website':'Marketing site for the DarkWin Windows customization pack.',
+  'ATTENDANCE_FACE_RECOGNITION':'Attendance tracking via face recognition.',
+  'OSINT-TOOLs':'Maintained collection focused on making open-source intelligence tools accessible for researchers and forensics practitioners.',
+  'BigBountyRecon':'66 different techniques using Google dorks and open-source tools to expedite initial recon on a target organisation.',
+  'ParamSpider':'Mining URLs from the dark corners of web archives for bug hunting, fuzzing, and further probing.',
+  'recon-ninja':'Recon-Ninja \u2014 faster initial recon.',
+  'jarvis-bilingual-adv-ai-assistant':'Futuristic cross-platform voice-activated AI assistant with full system control. English + Hindi (Hinglish), cyberpunk UI inspired by Tony Stark\'s JARVIS.',
+  'jarvis-bilingual-ai-assistant':'Bilingual voice assistant (English/Hindi).',
+  'sofiya-bilingual-ai-assistant':'Bilingual AI assistant companion.',
+  'nexus-elite-vip-assistant':'The peak of mobile AI interface \u2014 reasoning, cinematic video, pro-grade imagery, and real-time biometric link simulation.',
+  'neurocore-ai':'AI assistant / neural interface project.',
+  'vip-adv-assistant':'Advanced VIP assistant.',
+  'USB-Uncensored-LLM':'Zero-install portable local AI environment \u2014 run Gemma, Qwen, NemoMix directly from a USB drive. Air-gapped, cross-platform.',
+  'STUDYHUB':'Comprehensive educational platform \u2014 file sharing (notes/assignments), real-time messaging, anonymous study rooms, collaborative learning.',
+  'studyhub_v0.5':'Full-featured student resource-sharing platform \u2014 notes, assignments, study materials. Powered by PHP + MySQL for easy deployment.',
+  'commando-vm':'Mandiant\'s Commando VM \u2014 fully customizable Windows-based pentesting virtual machine distribution.',
+  'ig.osi':'Information-gathering / OSINT tool for Instagram.',
+  'vip-codelearn':'Code-learning platform by VIPHACKER.100.',
+  'VIP-COMMUNITY':'VIPHACKER.100 community hub.'
+};
+const TAGS = {
+  'ReconMaster':['python','recon','automation'],
+  'VIPSQLi':['python','sqli'],
+  'DarkWin-AATK':['python','automation'],
+  'vip-sqli-scanner-dashboard':['typescript','dashboard'],
+  'Inkflow':['javascript','ai'],
+  'LLM-COUNCIL':['python','multi-agent','ai'],
+  'DarkWin-NGASR':['python','automation'],
+  'PhishShield-Engine':['python','ml'],
+  'BurpSuiteInstaller':['batchfile','tooling'],
+  'VIPRecon':['python','recon'],
+  'ADVWebRecon':['python','recon'],
+  'DarkWin-OS-scripts':['powershell','windows'],
+  'DARKWIN-OS-SCRIPT':['powershell','windows'],
+  'DarkWin-Os-Website':['html','windows'],
+  'ATTENDANCE_FACE_RECOGNITION':['python','cv'],
+  'OSINT-TOOLs':['html','osint'],
+  'BigBountyRecon':['c#','recon','dorks'],
+  'ParamSpider':['python','recon'],
+  'recon-ninja':['javascript','recon'],
+  'jarvis-bilingual-adv-ai-assistant':['python','ai','voice'],
+  'jarvis-bilingual-ai-assistant':['typescript','ai'],
+  'sofiya-bilingual-ai-assistant':['python','ai'],
+  'nexus-elite-vip-assistant':['typescript','ai','mobile'],
+  'neurocore-ai':['typescript','ai'],
+  'vip-adv-assistant':['javascript','ai'],
+  'USB-Uncensored-LLM':['html','ai','local'],
+  'STUDYHUB':['javascript','education'],
+  'studyhub_v0.5':['javascript','php','mysql'],
+  'commando-vm':['powershell','pentesting'],
+  'ig.osi':['python','osint'],
+  'vip-codelearn':['javascript','education'],
+  'VIP-COMMUNITY':['html','community']
+};
+const FALLBACK_REPOS = [
+  {name:'ReconMaster',html_url:'https://github.com/VIPHACKER100/ReconMaster',stars:2,topics:['python','recon','automation']},
+  {name:'Inkflow',html_url:'https://github.com/VIPHACKER100/Inkflow',stars:0,topics:['javascript','ai']},
+  {name:'VIPSQLi',html_url:'https://github.com/VIPHACKER100/VIPSQLi',stars:1,topics:['python','sqli']},
+  {name:'DarkWin-AATK',html_url:'https://github.com/VIPHACKER100/DarkWin-AATK',stars:1,topics:['python','automation']},
+  {name:'LLM-COUNCIL',html_url:'https://github.com/VIPHACKER100/LLM-COUNCIL',stars:0,topics:['python','multi-agent','ai']},
+  {name:'vip-sqli-scanner-dashboard',html_url:'https://github.com/VIPHACKER100/vip-sqli-scanner-dashboard',stars:1,topics:['typescript','dashboard']},
+  {name:'DarkWin-NGASR',html_url:'https://github.com/VIPHACKER100/DarkWin-NGASR',stars:1,topics:['python','automation']},
+  {name:'PhishShield-Engine',html_url:'https://github.com/VIPHACKER100/PhishShield-Engine',stars:1,topics:['python','ml']},
+  {name:'commando-vm',html_url:'https://github.com/VIPHACKER100/commando-vm',stars:0,topics:['powershell','pentesting'],fork:true}
+];
+function renderCards(list){
+  const grid = document.getElementById('repo-grid');
+  if (!grid) return;
+  grid.innerHTML = list.map(r => {
+    const d = r.description || DESCS[r.name] || '(no description yet)';
+    const t = r.topics && r.topics.length ? r.topics.slice(0,4) : (TAGS[r.name] || [(r.language||'repo').toLowerCase()]);
+    const st = r.stargazers_count ? ` \u2605${r.stargazers_count}` : '';
+    const fork = r.fork ? ` <span style="color:var(--amber);font-size:11px">[fork]</span>` : '';
+    return `<div class="card reveal">
+      <h3>${r.name}${st}${fork}</h3>
+      <p>${d}</p>
+      <div class="tags">${t.map(x => `<span>${x}</span>`).join('')}</div>
+      <div class="links"><a href="${r.html_url}">source \u2197</a></div>
+    </div>`;
+  }).join('');
+  grid.querySelectorAll('.reveal').forEach(el => io.observe(el));
+}
+(function loadRepos(){
+  const grid = document.getElementById('repo-grid');
+  if (!grid) return;
+  Promise.all([
+    fetch('https://api.github.com/users/VIPHACKER100').then(r => r.ok ? r.json() : null).catch(() => null),
+    fetch('https://api.github.com/users/VIPHACKER100/repos?per_page=100&sort=updated').then(r => r.ok ? r.json() : null).catch(() => null)
+  ]).then(([u, repos]) => {
+    if (!repos || !Array.isArray(repos)) {
+      renderCards(FALLBACK_REPOS);
+      const sd = document.getElementById('sync');
+      if (sd) sd.textContent = '$ offline /// static snapshot';
+      return;
+    }
+    const stars = repos.reduce((s, r) => s + r.stargazers_count, 0);
+    const live = repos.filter(r => !BLOCK.includes(r.name));
+    renderCards(live);
+    if (u) {
+      const sr = document.getElementById('stat-repos');
+      const ss = document.getElementById('stat-stars');
+      const sf = document.getElementById('stat-followers');
+      const sd = document.getElementById('sync');
+      if (sr) sr.textContent = u.public_repos;
+      if (ss) ss.textContent = stars;
+      if (sf) sf.textContent = u.followers;
+      if (sd) sd.textContent = '$ synced ' + new Date().toLocaleTimeString() + ' /// live api.github.com';
+    } else {
+      const sr = document.getElementById('stat-repos');
+      const ss = document.getElementById('stat-stars');
+      const sf = document.getElementById('stat-followers');
+      if (sr) sr.textContent = FALLBACK_REPOS.length + '+';
+      if (ss) ss.textContent = FALLBACK_REPOS.reduce((s, r) => s + r.stars, 0);
+      if (sf) sf.textContent = '--';
+    }
+  }).catch(() => {
+    renderCards(FALLBACK_REPOS);
+    const sd = document.getElementById('sync');
+    if (sd) sd.textContent = '$ offline /// static snapshot';
+  });
+})();
+
+/* ---------- scroll reveal ---------- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+}), { threshold: .15 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ---------- active nav highlight ---------- */
+const sections = document.querySelectorAll('section');
+const navA = document.querySelectorAll('#nav-links a');
+const spy = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){
+    const id = '#' + e.target.id;
+    navA.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+  }
+}), { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(s => spy.observe(s));
+
+/* ---------- scroll progress ---------- */
+const prog = document.getElementById('progress');
+if (prog){
+  addEventListener('scroll', () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    prog.style.width = (max > 0 ? (scrollY / max) * 100 : 0) + '%';
+  }, { passive: true });
+}
+
+/* ---------- auto footer year ---------- */
+document.querySelectorAll('footer [data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
+
+/* ---------- mobile drawer ---------- */
+const drawer = document.getElementById('drawer');
+const btn = document.getElementById('drawer-btn');
+btn.addEventListener('click', () => drawer.classList.toggle('open'));
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
+</script>
+</body>
+</html>
