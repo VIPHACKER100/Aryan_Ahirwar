@@ -3,644 +3,3300 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Aryan Ahirwar &#x2014; Cybersecurity educator and ethical hacker. Founder & CEO of VIPHACKER.100. Web app pentesting, OSINT, bug bounty, Hindi-language security training.">
-<meta name="theme-color" content="#0a0e0a">
+<meta name="description" content="Aryan Ahirwar — Cybersecurity Educator, Ethical Hacker, Researcher, Founder & CEO of VIPHACKER.100. Author of published research on AI & IoT Smart Energy Management.">
+<meta name="theme-color" content="#06090c">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Aryan Ahirwar &#x2014; VIPHACKER.100">
-<meta property="og:description" content="Ethical hacker, cybersecurity educator. Web app pentesting, OSINT, bug bounty and Hindi-language security training for Indian beginners.">
+<meta property="og:title" content="Aryan Ahirwar — VIPHACKER.100 | 3D Cybersecurity & Research Portfolio">
+<meta property="og:description" content="Ethical hacker, researcher, cybersecurity educator, Founder of VIPHACKER.100. Published researcher in AI & IoT automation.">
 <meta property="og:site_name" content="VIPHACKER.100">
-<meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0e0a'/%3E%3Cpath d='M6 20V12h3.2c1.5 0 2.4.5 2.4 2 0 1.4-.9 2-2.4 2H7.3v2.7H6zM7.3 14.4h1.9c.6 0 .8-.3.8-.8s-.2-.8-.8-.8H7.3v1.6z' fill='%2339ff88'/%3E%3Cpath d='M12.6 20v-8H14v8h-1.4z' fill='%2339ff88'/%3E%3Cpath d='M16.5 20v-8h1.4v8h-1.4z' fill='%2339ff88'/%3E%3Cpath d='M19.8 20v-8h3.6v1.4h-2.2V16h2v1.4h-2v2.6h-1.4z' fill='%2339ff88'/%3E%3Cpath d='M25.6 20v-8h3.4v1.4h-2V20h-1.4z' fill='%2339ff88'/%3E%3C/svg%3E">
-<title>Aryan Ahirwar &#x2014; VIPHACKER.100</title>
+<title>Aryan Ahirwar — VIPHACKER.100 | 3D Cybersecurity &amp; Research Portfolio</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2306090c'/%3E%3Cpath d='M6 20V12h3.2c1.5 0 2.4.5 2.4 2 0 1.4-.9 2-2.4 2H7.3v2.7H6zM7.3 14.4h1.9c.6 0 .8-.3.8-.8s-.2-.8-.8-.8H7.3v1.6z' fill='%2300ff88'/%3E%3Cpath d='M12.6 20v-8H14v8h-1.4z' fill='%2300ff88'/%3E%3Cpath d='M16.5 20v-8h1.4v8h-1.4z' fill='%2300ff88'/%3E%3Cpath d='M19.8 20v-8h3.6v1.4h-2.2V16h2v1.4h-2v2.6h-1.4z' fill='%2300ff88'/%3E%3Cpath d='M25.6 20v-8h3.4v1.4h-2V20h-1.4z' fill='%2300ff88'/%3E%3C/svg%3E">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Three.js for 3D interactive WebGL scene -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
 <style>
-/* ===== tokens ===== */
-:root{
-  --bg:#0a0e0a; --bg-2:#0d1117; --panel:#111711; --border:#1f2b22;
-  --accent:#39ff88; --accent-dim:rgba(57,255,136,.3);
-  --amber:#ffb454; --cyan:#45c4ff;
-  --text:#d8e6de; --text-dim:#7d8f85;
-  --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
-  --space:6px;
-  --sh-1:0 1px 0 rgba(255,255,255,.04) inset;
-  --sh-2:0 4px 24px -8px rgba(0,0,0,.5),0 1px 0 rgba(255,255,255,.04) inset;
-  --sh-3:0 8px 40px -12px rgba(0,0,0,.6),0 2px 0 rgba(57,255,136,.06) inset;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:15px;line-height:1.6;overflow-x:hidden}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-shadow:0 0 8px var(--accent-dim)}
-h1,h2,h3{font-weight:800;color:#fff;letter-spacing:-1px}
-::selection{background:var(--accent);color:#04120a}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* ==========================================================================
+   DESIGN TOKENS & CYBER-HUD DESIGN SYSTEM
+   ========================================================================== */
+:root {
+  --bg-deep: #05080c;
+  --bg-surface: #0a0f16;
+  --bg-card: rgba(13, 20, 30, 0.78);
+  --bg-card-hover: rgba(18, 28, 42, 0.9);
+  --panel-border: rgba(0, 255, 136, 0.18);
+  --panel-border-bright: rgba(0, 255, 136, 0.5);
+  
+  --cyber-emerald: #00ff88;
+  --cyber-emerald-glow: rgba(0, 255, 136, 0.35);
+  --cyber-cyan: #00e5ff;
+  --cyber-cyan-glow: rgba(0, 229, 255, 0.35);
+  --cyber-amber: #ffb800;
+  --cyber-red: #ff3366;
+  --cyber-purple: #a855f7;
+  
+  --text-main: #f0f6fc;
+  --text-dim: #8b9bb0;
+  --text-muted: #536477;
 
-/* ===== CRT scanline overlay ===== */
-.crt::before{
-  content:" ";position:fixed;inset:0;pointer-events:none;z-index:60;
-  background:repeating-linear-gradient(0deg,transparent 0 2px,rgba(0,0,0,.13) 2px 3px);
-  opacity:.3;mix-blend-mode:multiply;
-}
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
-/* ===== matrix rain (hero, faint) ===== */
-#matrix{position:absolute;inset:0;opacity:.07;filter:blur(1px);pointer-events:none}
-
-/* ===== scroll progress ===== */
-#progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--accent);box-shadow:0 0 8px var(--accent-dim);z-index:70}
-
-/* ===== nav ===== */
-nav{
-  position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
-  padding:12px 24px;background:rgba(10,14,10,.88);backdrop-filter:blur(6px);border-bottom:1px solid var(--border);
-}
-.brand{font-weight:800;color:var(--accent);white-space:nowrap}
-.brand .cursor{animation:blink 1s steps(2) infinite}
-@keyframes blink{50%{opacity:0}}
-nav ul{display:flex;gap:24px;list-style:none}
-nav a{color:var(--text-dim);font-size:13px;display:inline-flex;align-items:center;gap:6px}
-nav a::before{content:"$";color:var(--border);font-size:11px}
-nav a.active,nav a:hover{color:var(--accent)}
-nav a.active::before,nav a:hover::before{color:var(--accent)}
-#drawer-btn{display:none;background:none;border:1px solid var(--border);color:var(--accent);font-family:var(--mono);padding:6px 10px;cursor:pointer}
-#drawer{display:none}
-
-/* ===== layout ===== */
-.container{max-width:1040px;margin:0 auto;padding:0 24px}
-section{padding:84px 0}
-.tag{color:var(--accent);font-size:13px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
-.tag::before{
-  content:"";width:15px;height:15px;display:inline-block;flex:0 0 auto;
-  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 8h11M8 4l4 4-4 4' stroke='%2339ff88' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E") no-repeat center/contain;
-}
-h2{font-size:26px;margin-bottom:36px}
-
-/* reveal on scroll */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .5s,transform .5s}
-.reveal.in{opacity:1;transform:none}
-
-/* ===== hero ===== */
-#hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:0}
-.hero-inner{position:relative;z-index:2}
-.term{
-  background:var(--bg-2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:30px;max-width:620px;
-  box-shadow:var(--sh-2);
-}
-.term-bar{display:flex;gap:6px;padding:10px 14px;border-bottom:1px solid var(--border);font-size:12px;color:var(--text-dim);align-items:center}
-.term-bar i{width:10px;height:10px;border-radius:50%;display:inline-block;background:#3a4a40}
-.term-bar i:first-child{background:#ff5f57}
-.term-bar i:nth-child(2){background:#febc2e}
-.term-body{padding:16px 18px;font-size:13px;min-height:190px;white-space:pre-wrap}
-.term-body .ln{display:block}
-.term-body .ok{color:var(--accent)}
-.term-body .dim{color:var(--text-dim)}
-.term-body .amber{color:var(--amber)}
-.typing::after{content:"\258C";color:var(--accent);animation:blink 1s steps(2) infinite}
-h1{font-size:clamp(34px,7vw,68px);margin-bottom:12px;font-weight:800;letter-spacing:-2px;line-height:1.05}
-h1 .glow{color:var(--accent);text-shadow:0 0 18px var(--accent-dim)}
-.sub{color:var(--text-dim);font-size:16px;max-width:560px;margin-bottom:34px}
-.ctas{display:flex;gap:14px;flex-wrap:wrap}
-.btn{
-  font-family:var(--mono);font-size:14px;padding:12px 22px;border-radius:6px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:box-shadow .2s,transform .2s;
-}
-.btn-primary{background:var(--accent);color:#04120a;font-weight:800;border:1px solid var(--accent)}
-.btn-primary:hover{box-shadow:0 0 24px var(--accent-dim)}
-.btn-outline{background:transparent;color:var(--accent);border:1px solid var(--accent)}
-.btn-outline:hover{box-shadow:0 0 24px var(--accent-dim)}
-.scroll-down{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:var(--text-dim);font-size:12px;animation:float 2s ease-in-out infinite}
-@keyframes float{50%{transform:translate(-50%,8px)}}
-
-/* ===== about / stats ===== */
-.about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:start}
-.stats{background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:24px;box-shadow:var(--sh-2)}
-.stats .row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed var(--border);font-size:13px;align-items:center}
-.stats .row:last-child{border-bottom:none}
-.stats .row span:first-child{display:inline-flex;align-items:center;gap:8px}
-.stats .row span:first-child::before{
-  content:"";width:8px;height:8px;border-radius:1px;display:inline-block;flex:0 0 auto;background:var(--accent);
-  box-shadow:0 0 6px var(--accent-dim);
-}
-.stats .v{color:var(--accent);font-weight:800}
-.placeholder{color:var(--amber)}
-p.body{margin-bottom:16px;color:var(--text)}
-.hl{color:var(--accent)}
-
-/* ===== skills ===== */
-#skills{margin-top:40px}
-.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
-.skill{background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:18px;transition:border-color .2s;box-shadow:var(--sh-1)}
-.skill:hover{border-color:var(--accent);box-shadow:var(--sh-2)}
-.skill h3{font-size:14px;color:var(--accent);margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.skill h3::before{
-  content:"";width:13px;height:13px;display:inline-block;flex:0 0 auto;
-  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 1v14M1 8h14' stroke='%2339ff88' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat center/contain;
-}
-.skill ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px}
-.skill li{font-size:11px;padding:4px 10px;border:1px solid var(--border);border-radius:20px;color:var(--text-dim)}
-.badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:3px;margin-left:6px;vertical-align:middle}
-.badge.verified{background:rgba(57,255,136,.12);color:var(--accent);border:1px solid var(--accent)}
-.badge.active{background:rgba(255,180,84,.12);color:var(--amber);border:1px solid var(--amber)}
-.badge.learning{background:rgba(69,196,255,.1);color:var(--cyan);border:1px solid var(--cyan)}
-
-/* ===== projects ===== */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
-.card{
-  background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:22px;
-  display:flex;flex-direction:column;gap:10px;transition:transform .2s,box-shadow .2s,border-color .2s;box-shadow:var(--sh-1);
-}
-.card:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:var(--sh-3)}
-.card h3{font-size:16px;color:#fff;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.card h3::before{
-  content:"";width:14px;height:14px;display:inline-block;flex:0 0 auto;
-  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 2h6l2 2h4v10H2z' stroke='%2339ff88' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat center/contain;
-}
-.card p{font-size:13px;color:var(--text-dim);flex:1}
-.card .tags{display:flex;flex-wrap:wrap;gap:6px}
-.card .tags span{font-size:11px;color:var(--accent);border:1px solid var(--border);padding:2px 8px;border-radius:4px}
-.card .links{display:flex;gap:14px;font-size:13px}
-.loading{color:var(--text-dim);font-size:13px;grid-column:1/-1;padding:24px}
-.synced{color:var(--text-dim);font-size:12px;margin:14px 0 -8px}
-.more{display:block;margin-top:26px;text-align:center;font-size:14px}
-
-/* ===== training ===== */
-.training-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.train{background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:24px;box-shadow:var(--sh-1)}
-.train h3{font-size:14px;color:var(--accent);margin-bottom:10px;display:flex;align-items:center;gap:8px}
-.train h3::before{
-  content:"";width:13px;height:13px;display:inline-block;flex:0 0 auto;
-  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 8l4-4 8 8-4 4z' stroke='%2339ff88' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat center/contain;
-}
-.train p{font-size:13px;color:var(--text-dim)}
-.train .ch{color:var(--amber);font-size:12px}
-.socials{display:flex;gap:16px;flex-wrap:wrap;margin-top:28px}
-.socials a{font-size:13px;border:1px solid var(--border);padding:8px 14px;border-radius:6px}
-.socials a:hover{border-color:var(--accent)}
-
-/* ===== contact ===== */
-#contact form{background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:26px;max-width:560px;margin-bottom:30px;box-shadow:var(--sh-2)}
-label{display:block;font-size:12px;color:var(--accent);margin:14px 0 6px}
-input,textarea{
-  width:100%;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);
-  font-family:var(--mono);font-size:14px;padding:11px 14px;
-}
-input:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
-textarea{min-height:120px;resize:vertical}
-.links-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
-.links-grid a{background:var(--bg-2);border:1px solid var(--border);border-radius:6px;padding:12px 16px;font-size:13px;color:var(--text);display:flex;align-items:center;gap:8px;box-shadow:var(--sh-1)}
-.links-grid a::before{
-  content:"";width:14px;height:14px;display:inline-block;flex:0 0 auto;
-  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 1H2v14h11v-5M9 1h5v5M14 2L6 10' stroke='%2339ff88' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat center/contain;
-}
-.links-grid a:hover{border-color:var(--accent);color:var(--accent)}
-
-/* ===== footer ===== */
-footer{border-top:1px solid var(--border);padding:24px 0;text-align:center;font-size:12px;color:var(--text-dim)}
-footer .h{color:var(--accent);font-weight:800}
-
-/* ===== responsive ===== */
-/* wide screens: cap container */
-@media(min-width:1600px){
-  .container{max-width:1200px}
-}
-/* tablets */
-@media(max-width:1024px){
-  .about-grid{grid-template-columns:1fr;gap:30px}
-  h1{font-size:clamp(30px,6.4vw,56px)}
-}
-/* mobile */
-@media(max-width:760px){
-  nav ul{display:none}
-  #drawer-btn{display:block}
-  #drawer.open{display:flex;flex-direction:column;gap:4px;position:fixed;top:53px;right:12px;background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:8px;z-index:55;min-width:180px}
-  #drawer a{padding:12px 14px;font-size:14px;min-height:44px;display:flex;align-items:center}
-  #drawer-btn{min-height:44px;min-width:44px}
-  .socials a,.links-grid a{padding:14px 16px;min-height:44px}
-  .more{font-size:13px}
-  .about-grid{grid-template-columns:1fr}
-  section{padding:48px 0}
-  .container{padding:0 18px}
-  h2{font-size:22px;margin-bottom:30px}
-  h1{font-size:clamp(26px,8vw,40px)}
-  .sub{font-size:14px}
-  .btn{padding:12px 18px}
-  .term-body{font-size:12px;min-height:170px}
-  .term-bar i{width:9px;height:9px}
-  .ctas{flex-direction:column;align-items:stretch}
-  .ctas .btn{justify-content:center}
-  .links-grid{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
-  #contact form{padding:20px}
-  .scroll-down{bottom:18px}
-}
-/* small phones (>=360px) */
-@media(max-width:400px){
-  .container{padding:0 14px}
-  .brand{font-size:13px}
-  .term-body{font-size:11px;padding:14px}
-  .stats{padding:18px}
-  .skill,.train{padding:16px}
+  --shadow-hud: 0 8px 32px 0 rgba(0, 0, 0, 0.55), 0 0 0 1px var(--panel-border);
+  --shadow-glow: 0 0 25px rgba(0, 255, 136, 0.2);
+  --shadow-cyan-glow: 0 0 25px rgba(0, 229, 255, 0.2);
 }
 
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none!important;transition:none!important}
-  html{scroll-behavior:auto}
-  .reveal{opacity:1;transform:none}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-deep);
+}
+
+body {
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  font-size: 14.5px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: #192738;
+  border-radius: 4px;
+  border: 1px solid var(--panel-border);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cyber-emerald);
+}
+
+::selection {
+  background: var(--cyber-emerald);
+  color: #04120a;
+}
+
+/* ==========================================================================
+   3D CANVAS & ATMOSPHERIC EFFECTS
+   ========================================================================== */
+#webgl-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: auto;
+  opacity: 0.92;
+}
+
+.cyber-grid-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background-image: 
+    linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at 50% 50%, black 40%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 40%, transparent 85%);
+}
+
+.scanlines-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  background: repeating-linear-gradient(0deg, transparent 0 2px, rgba(0, 0, 0, 0.18) 2px 4px);
+  opacity: 0.45;
+}
+
+.vignette-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+  background: radial-gradient(circle at center, transparent 40%, rgba(3, 6, 10, 0.85) 95%);
+}
+
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--cyber-emerald), var(--cyber-cyan));
+  box-shadow: 0 0 10px var(--cyber-emerald-glow);
+  z-index: 999;
+  transition: width 0.1s ease-out;
+}
+
+/* ==========================================================================
+   NAVIGATION HUD
+   ========================================================================== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 12px 24px;
+  background: rgba(5, 8, 12, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.nav-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.brand-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: rgba(0, 255, 136, 0.1);
+  border: 1px solid var(--cyber-emerald);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cyber-emerald);
+  font-weight: 800;
+  font-size: 13px;
+  box-shadow: 0 0 14px var(--cyber-emerald-glow);
+}
+
+.brand-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+.brand-text span {
+  color: var(--cyber-emerald);
+}
+
+.brand-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--cyber-emerald);
+  background: rgba(0, 255, 136, 0.08);
+  border: 1px solid rgba(0, 255, 136, 0.25);
+  padding: 3px 8px;
+  border-radius: 20px;
+  margin-left: 8px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cyber-emerald);
+  box-shadow: 0 0 8px var(--cyber-emerald);
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.5; }
+}
+
+nav ul {
+  display: flex;
+  gap: 16px;
+  list-style: none;
+  align-items: center;
+}
+
+nav a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.25s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+nav a::before {
+  content: '//';
+  color: var(--text-muted);
+  font-size: 11px;
+  transition: color 0.25s ease;
+}
+
+nav a:hover, nav a.active {
+  color: var(--cyber-emerald);
+  background: rgba(0, 255, 136, 0.06);
+}
+nav a:hover::before, nav a.active::before {
+  color: var(--cyber-emerald);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.nav-phone-chip {
+  background: rgba(0, 255, 136, 0.08);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  color: var(--cyber-emerald);
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1;
+  transition: all 0.2s ease;
+}
+.nav-phone-chip:hover {
+  background: var(--cyber-emerald);
+  color: #05080c;
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+}
+
+.audio-toggle-btn {
+  background: rgba(13, 20, 30, 0.8);
+  border: 1px solid var(--panel-border);
+  color: var(--text-dim);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+}
+.audio-toggle-btn:hover {
+  border-color: var(--cyber-emerald);
+  color: var(--cyber-emerald);
+}
+.audio-toggle-btn.sound-on {
+  color: var(--cyber-emerald);
+  border-color: var(--cyber-emerald);
+  background: rgba(0, 255, 136, 0.08);
+}
+
+#drawer-toggle {
+  display: none;
+  background: rgba(13, 20, 30, 0.9);
+  border: 1px solid var(--panel-border);
+  color: var(--cyber-emerald);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#mobile-drawer {
+  display: none;
+  position: fixed;
+  top: 61px;
+  left: 0;
+  right: 0;
+  background: rgba(8, 12, 18, 0.98);
+  border-bottom: 1px solid var(--panel-border);
+  padding: 16px 24px;
+  z-index: 99;
+  flex-direction: column;
+  gap: 10px;
+}
+#mobile-drawer.open {
+  display: flex;
+}
+#mobile-drawer a {
+  color: var(--text-main);
+  text-decoration: none;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 6px;
+  background: rgba(13, 20, 30, 0.6);
+  border: 1px solid rgba(0, 255, 136, 0.1);
+}
+#mobile-drawer a:hover {
+  color: var(--cyber-emerald);
+  border-color: var(--cyber-emerald);
+}
+
+/* ==========================================================================
+   MAIN CONTENT & 3D WRAPPER
+   ========================================================================== */
+main {
+  position: relative;
+  z-index: 10;
+}
+
+.section-wrapper {
+  padding: 100px 0;
+  position: relative;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-hud-header {
+  margin-bottom: 40px;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--cyber-emerald);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+  background: rgba(0, 255, 136, 0.08);
+  padding: 4px 12px;
+  border-radius: 4px;
+  border-left: 3px solid var(--cyber-emerald);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -1px;
+  line-height: 1.15;
+}
+.section-title span {
+  background: linear-gradient(135deg, #fff 30%, var(--cyber-cyan) 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-desc {
+  color: var(--text-dim);
+  font-size: 15px;
+  max-width: 680px;
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   HERO SECTION (3D INTERACTION STAGE)
+   ========================================================================== */
+#hero {
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  padding: 60px 0 40px;
+  position: relative;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-content {
+  position: relative;
+}
+
+.security-badge-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.security-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 255, 136, 0.08);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  padding: 6px 14px;
+  border-radius: 30px;
+  color: var(--cyber-emerald);
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.15);
+}
+
+.research-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  padding: 6px 14px;
+  border-radius: 30px;
+  color: var(--cyber-cyan);
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 6vw, 68px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -2px;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.hero-title .glow-name {
+  background: linear-gradient(135deg, #ffffff 20%, var(--cyber-emerald) 70%, var(--cyber-cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 35px var(--cyber-emerald-glow);
+  display: inline-block;
+}
+
+.hero-title .alias {
+  display: block;
+  font-size: clamp(18px, 2.5vw, 28px);
+  color: var(--cyber-cyan);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: 0px;
+  margin-top: 6px;
+  opacity: 0.9;
+}
+
+.hero-subtext {
+  font-size: clamp(15px, 1.8vw, 17px);
+  color: var(--text-dim);
+  line-height: 1.65;
+  margin-bottom: 32px;
+  max-width: 600px;
+}
+
+.hero-subtext strong {
+  color: #fff;
+  font-weight: 600;
+}
+.hero-subtext .highlight {
+  color: var(--cyber-emerald);
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+.btn {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--cyber-emerald) 0%, #00d670 100%);
+  color: #04120a;
+  box-shadow: 0 0 25px rgba(0, 255, 136, 0.4);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 35px rgba(0, 255, 136, 0.6);
+}
+
+.btn-secondary {
+  background: rgba(13, 20, 30, 0.85);
+  color: var(--cyber-cyan);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  box-shadow: var(--shadow-hud);
+}
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  border-color: var(--cyber-cyan);
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.3);
+  color: #fff;
+}
+
+.btn-research {
+  background: rgba(168, 85, 247, 0.12);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+}
+.btn-research:hover {
+  background: rgba(168, 85, 247, 0.25);
+  border-color: #c084fc;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.35);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--panel-border);
+}
+.btn-outline:hover {
+  border-color: var(--cyber-emerald);
+  color: var(--cyber-emerald);
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+}
+
+/* 3D Scene Controls / Hint */
+.interactive-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  background: rgba(13, 20, 30, 0.6);
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.interactive-hint svg {
+  animation: rotate-hint 6s linear infinite;
+}
+@keyframes rotate-hint {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   INTERACTIVE CYBER COMMAND TERMINAL (HUD)
+   ========================================================================== */
+.terminal-hud {
+  background: rgba(10, 15, 22, 0.88);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--panel-border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  height: 490px;
+  transform-style: preserve-3d;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.terminal-hud:hover {
+  border-color: var(--panel-border-bright);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 255, 136, 0.15);
+}
+
+.terminal-header {
+  background: rgba(15, 23, 34, 0.95);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 7px;
+}
+.terminal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.terminal-dot.red { background: #ff5f56; }
+.terminal-dot.yellow { background: #ffbd2e; }
+.terminal-dot.green { background: #27c93f; }
+
+.terminal-title {
+  font-size: 11.5px;
+  color: var(--text-dim);
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.terminal-badge {
+  font-size: 10px;
+  background: rgba(0, 255, 136, 0.12);
+  color: var(--cyber-emerald);
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+.terminal-screen {
+  flex: 1;
+  padding: 16px 20px;
+  overflow-y: auto;
+  font-size: 12.5px;
+  line-height: 1.6;
+  font-family: var(--font-mono);
+  color: #c9d1d9;
+}
+
+.t-line {
+  margin-bottom: 6px;
+  word-break: break-word;
+}
+.t-line.success { color: var(--cyber-emerald); }
+.t-line.info { color: var(--cyber-cyan); }
+.t-line.warning { color: var(--cyber-amber); }
+.t-line.dim { color: var(--text-muted); }
+.t-line.prompt { color: #fff; font-weight: 600; }
+.t-line.purple { color: #c084fc; }
+
+.terminal-input-row {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  background: rgba(7, 11, 16, 0.95);
+  border-top: 1px solid rgba(0, 255, 136, 0.15);
+  gap: 8px;
+}
+
+.terminal-prompt-label {
+  color: var(--cyber-emerald);
+  font-weight: 700;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.terminal-cli-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-mono);
+  color: #ffffff;
+  font-size: 13px;
+}
+.terminal-cli-input::placeholder {
+  color: var(--text-muted);
+}
+
+.quick-commands {
+  display: flex;
+  gap: 6px;
+  padding: 8px 16px;
+  background: rgba(13, 20, 30, 0.6);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  overflow-x: auto;
+}
+.quick-cmd-btn {
+  background: rgba(0, 255, 136, 0.08);
+  border: 1px solid rgba(0, 255, 136, 0.2);
+  color: var(--cyber-emerald);
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  transition: all 0.2s ease;
+}
+.quick-cmd-btn:hover {
+  background: var(--cyber-emerald);
+  color: #05080c;
+}
+.quick-cmd-btn.purple-btn {
+  color: #c084fc;
+  border-color: rgba(168, 85, 247, 0.35);
+  background: rgba(168, 85, 247, 0.1);
+}
+.quick-cmd-btn.purple-btn:hover {
+  background: #a855f7;
+  color: #fff;
+}
+
+/* ==========================================================================
+   3D TILT CARDS & HUD ELEMENTS
+   ========================================================================== */
+.tilt-card {
+  background: var(--bg-card);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 26px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-hud);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s ease-out, border-color 0.25s ease, box-shadow 0.25s ease;
+  transform-style: preserve-3d;
+}
+
+.tilt-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle 220px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 255, 136, 0.12), transparent 80%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tilt-card:hover::before {
+  opacity: 1;
+}
+
+.tilt-card:hover {
+  border-color: var(--panel-border-bright);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.65), 0 0 20px rgba(0, 255, 136, 0.15);
+}
+
+/* ==========================================================================
+   ABOUT / BIO SECTION & TELEMETRY
+   ========================================================================== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.bio-card h3 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bio-paragraph {
+  color: var(--text-main);
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.bio-paragraph .hl {
+  color: var(--cyber-emerald);
+  font-weight: 600;
+}
+.bio-paragraph .cyan {
+  color: var(--cyber-cyan);
+  font-weight: 600;
+}
+.bio-paragraph .purple {
+  color: #c084fc;
+  font-weight: 600;
+}
+
+.bio-meta-tags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.meta-chip {
+  font-size: 11.5px;
+  background: rgba(15, 23, 34, 0.8);
+  border: 1px solid var(--panel-border);
+  padding: 5px 12px;
+  border-radius: 6px;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.meta-chip span {
+  color: var(--cyber-emerald);
+  font-weight: 700;
+}
+
+/* Telemetry Stats Card */
+.telemetry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--panel-border);
+}
+.telemetry-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cyber-cyan);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.telemetry-live-pulse {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--cyber-emerald);
+}
+
+.telemetry-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.telemetry-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background: rgba(7, 11, 16, 0.6);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+.telemetry-label {
+  font-size: 12.5px;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.telemetry-label::before {
+  content: '>';
+  color: var(--cyber-emerald);
+  font-weight: 700;
+}
+.telemetry-val {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--cyber-emerald);
+}
+.telemetry-val.lang {
+  color: var(--cyber-amber);
+  font-size: 16px;
+}
+.telemetry-val.purple-val {
+  color: #c084fc;
+}
+
+/* ==========================================================================
+   ACADEMIC RESEARCH & PUBLICATIONS SECTION
+   ========================================================================== */
+.research-feature-card {
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.6), 0 0 25px rgba(168, 85, 247, 0.15);
+}
+.research-feature-card:hover {
+  border-color: #c084fc;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.75), 0 0 35px rgba(168, 85, 247, 0.3);
+}
+
+.research-badge-strip {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.res-pill {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.res-pill.purple {
+  background: rgba(168, 85, 247, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+}
+.res-pill.cyan {
+  background: rgba(0, 229, 255, 0.1);
+  color: var(--cyber-cyan);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+}
+.res-pill.gold {
+  background: rgba(255, 184, 0, 0.1);
+  color: var(--cyber-amber);
+  border: 1px solid rgba(255, 184, 0, 0.3);
+}
+
+.research-paper-title {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.5vw, 26px);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+  margin-bottom: 14px;
+}
+
+.research-authors {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+.research-authors strong {
+  color: var(--cyber-emerald);
+}
+
+.research-journal-meta {
+  background: rgba(7, 11, 16, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-left: 3px solid #c084fc;
+  border-radius: 0 8px 8px 0;
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: var(--text-dim);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.research-journal-meta .j-name {
+  color: #ffffff;
+  font-weight: 600;
+}
+.research-journal-meta .doi-link {
+  color: var(--cyber-cyan);
+  word-break: break-all;
+  text-decoration: none;
+}
+.research-journal-meta .doi-link:hover {
+  text-decoration: underline;
+}
+
+.research-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ==========================================================================
+   SKILLS & CAPABILITIES RADAR
+   ========================================================================== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.skill-hud-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skill-hud-card h4 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skill-badge {
+  font-size: 10.5px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.skill-badge.verified {
+  background: rgba(0, 255, 136, 0.1);
+  color: var(--cyber-emerald);
+  border: 1px solid var(--cyber-emerald);
+}
+.skill-badge.active {
+  background: rgba(0, 229, 255, 0.1);
+  color: var(--cyber-cyan);
+  border: 1px solid var(--cyber-cyan);
+}
+
+.skill-meter-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.skill-meter-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+.skill-bar-bg {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+.skill-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--cyber-emerald), var(--cyber-cyan));
+  width: 0%;
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 10px var(--cyber-emerald-glow);
+}
+
+.skill-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.skill-tag-pill {
+  font-size: 11.5px;
+  color: var(--text-dim);
+  background: rgba(13, 20, 30, 0.85);
+  border: 1px solid var(--panel-border);
+  padding: 4px 10px;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+}
+.skill-hud-card:hover .skill-tag-pill {
+  border-color: rgba(0, 255, 136, 0.3);
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   PROJECTS COMMAND DECK & GITHUB REPOS
+   ========================================================================== */
+.projects-deck-filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.filter-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: rgba(13, 20, 30, 0.8);
+  border: 1px solid var(--panel-border);
+  color: var(--text-dim);
+  padding: 7px 16px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.filter-btn:hover, .filter-btn.active {
+  background: rgba(0, 255, 136, 0.12);
+  color: var(--cyber-emerald);
+  border-color: var(--cyber-emerald);
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+}
+
+.search-box-wrap {
+  position: relative;
+  min-width: 260px;
+}
+.search-box-wrap input {
+  width: 100%;
+  background: rgba(13, 20, 30, 0.8);
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  padding: 8px 14px 8px 34px;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  outline: none;
+}
+.search-box-wrap input:focus {
+  border-color: var(--cyber-emerald);
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.25);
+}
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.repos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 22px;
+}
+
+.repo-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+}
+
+.repo-card-top {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.repo-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.repo-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.repo-badge {
+  font-size: 10.5px;
+  color: var(--cyber-amber);
+  background: rgba(255, 184, 0, 0.1);
+  border: 1px solid rgba(255, 184, 0, 0.3);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.repo-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--cyber-amber);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.repo-desc {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.55;
+  margin-top: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.repo-card-bottom {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.repo-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.repo-tag {
+  font-size: 10.5px;
+  color: var(--cyber-cyan);
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  padding: 2px 7px;
+  border-radius: 3px;
+}
+
+.repo-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.repo-link {
+  font-size: 12.5px;
+  color: var(--cyber-emerald);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.repo-link:hover {
+  text-shadow: 0 0 10px var(--cyber-emerald);
+  transform: translateX(3px);
+}
+
+.repo-status-footer {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.repo-status-footer a {
+  color: var(--cyber-cyan);
+  text-decoration: none;
+  font-weight: 600;
+}
+.repo-status-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   HINDI CYBERSECURITY TRAINING & MISSION
+   ========================================================================== */
+.training-showcase {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 36px;
+}
+
+.train-card h4 {
+  font-family: var(--font-display);
+  font-size: 19px;
+  color: #fff;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.train-card p {
+  color: var(--text-dim);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.train-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(0, 255, 136, 0.1);
+  border: 1px solid var(--cyber-emerald);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cyber-emerald);
+  margin-bottom: 16px;
+}
+
+.channels-strip {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.channel-btn {
+  background: rgba(13, 20, 30, 0.9);
+  border: 1px solid var(--panel-border);
+  padding: 12px 20px;
+  border-radius: 8px;
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.25s ease;
+}
+.channel-btn:hover {
+  border-color: var(--cyber-emerald);
+  color: var(--cyber-emerald);
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.25);
+}
+.channel-btn.youtube:hover {
+  border-color: #ff3366;
+  color: #ff3366;
+  box-shadow: 0 0 20px rgba(255, 51, 102, 0.25);
+}
+.channel-btn.telegram:hover {
+  border-color: #0088cc;
+  color: #00e5ff;
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.25);
+}
+
+/* ==========================================================================
+   CONTACT / TRANSMISSION UPLINK
+   ========================================================================== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 12px;
+  color: var(--cyber-emerald);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-control {
+  width: 100%;
+  background: rgba(7, 11, 16, 0.7);
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  transition: all 0.25s ease;
+}
+.form-control:focus {
+  outline: none;
+  border-color: var(--cyber-emerald);
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.25);
+  background: rgba(10, 16, 24, 0.9);
+}
+textarea.form-control {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.contact-channels-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.direct-phone-box {
+  background: rgba(0, 229, 255, 0.05);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  border-radius: 10px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.direct-phone-box .title {
+  font-size: 11px;
+  color: var(--cyber-cyan);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.direct-phone-box .phone-number {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.phone-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.phone-chip-btn {
+  font-size: 11.5px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border: 1px solid var(--panel-border);
+  background: rgba(13, 20, 30, 0.85);
+  color: var(--text-dim);
+  cursor: pointer;
+}
+.phone-chip-btn:hover {
+  color: #fff;
+  border-color: var(--cyber-cyan);
+}
+.phone-chip-btn.whatsapp-chip {
+  background: rgba(37, 211, 102, 0.12);
+  color: #25d366;
+  border-color: rgba(37, 211, 102, 0.35);
+}
+.phone-chip-btn.whatsapp-chip:hover {
+  background: #25d366;
+  color: #05080c;
+  box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+}
+
+.direct-email-box {
+  background: rgba(0, 255, 136, 0.05);
+  border: 1px dashed var(--cyber-emerald);
+  border-radius: 10px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.direct-email-box .title {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.direct-email-box .email {
+  color: var(--cyber-emerald);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.uplink-channels-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+}
+
+.uplink-link {
+  background: rgba(7, 11, 16, 0.6);
+  border: 1px solid var(--panel-border);
+  padding: 11px 14px;
+  border-radius: 8px;
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 12.5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+}
+.uplink-link:hover {
+  border-color: var(--cyber-emerald);
+  color: var(--cyber-emerald);
+  background: rgba(0, 255, 136, 0.05);
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+footer {
+  border-top: 1px solid var(--panel-border);
+  padding: 40px 0;
+  background: rgba(5, 8, 12, 0.95);
+  position: relative;
+  z-index: 10;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.footer-brand .name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+.footer-brand .motto {
+  font-size: 12px;
+  color: var(--cyber-emerald);
+}
+
+.footer-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 1240px) {
+  .brand-status {
+    display: none;
+  }
+  nav ul {
+    gap: 10px;
+  }
+  nav a {
+    padding: 5px 8px;
+    font-size: 12.5px;
+  }
+}
+
+@media (max-width: 1024px) {
+  nav ul {
+    display: none;
+  }
+  #drawer-toggle {
+    display: block;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .about-grid, .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  .terminal-hud {
+    height: 440px;
+  }
+}
+
+@media (max-width: 768px) {
+  nav ul, .brand-status, .nav-phone-chip {
+    display: none;
+  }
+  #drawer-toggle {
+    display: block;
+  }
+  .section-wrapper {
+    padding: 60px 0;
+  }
+  .container {
+    padding: 0 18px;
+  }
+  .hero-title {
+    font-size: clamp(32px, 8vw, 44px);
+  }
+  .hero-ctas {
+    flex-direction: column;
+  }
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .footer-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer-meta {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }
 </style>
 </head>
-<body class="crt">
-<div id="progress" aria-hidden="true"></div>
+<body>
 
-<!-- ================= NAV ================= -->
-<nav>
-  <div class="brand">root@VIPHACKER.100:~#<span class="cursor">_</span></div>
-  <ul id="nav-links">
-    <li><a href="#hero" class="active">[about]</a></li>
-    <li><a href="#skills">[skills]</a></li>
-    <li><a href="#projects">[projects]</a></li>
-    <li><a href="#training">[training]</a></li>
-    <li><a href="#contact">[contact]</a></li>
-  </ul>
-  <button id="drawer-btn" aria-label="Open navigation menu">[menu]</button>
-</nav>
-<div id="drawer">
-  <a href="#hero">about</a>
-  <a href="#skills">skills</a>
-  <a href="#projects">projects</a>
-  <a href="#training">training</a>
-  <a href="#contact">contact</a>
+<!-- Background 3D WebGL Canvas -->
+<div id="webgl-container"></div>
+
+<!-- Cyber Atmospheric Overlays -->
+<div class="cyber-grid-overlay" aria-hidden="true"></div>
+<div class="scanlines-overlay" aria-hidden="true"></div>
+<div class="vignette-overlay" aria-hidden="true"></div>
+<div id="scroll-progress" aria-hidden="true"></div>
+
+<!-- ==========================================================================
+     HEADER / HUD NAVIGATION
+     ========================================================================== -->
+<header>
+  <div class="nav-container">
+    <a href="#hero" class="brand-wrapper">
+      <div class="brand-logo">VH</div>
+      <div class="brand-text">VIPHACKER<span>.100</span></div>
+      <div class="brand-status">
+        <div class="status-dot"></div>
+        <span>SYSTEM OPERATIONAL</span>
+      </div>
+    </a>
+
+    <nav>
+      <ul id="nav-links">
+        <li><a href="#hero" class="active">Overview</a></li>
+        <li><a href="#about">Profile</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#skills">Capabilities</a></li>
+        <li><a href="#projects">Repositories</a></li>
+        <li><a href="#training">Training</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="tel:+917389718429" class="nav-phone-chip" title="Call Aryan Ahirwar">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+        <span style="white-space:nowrap;line-height:1">+91&nbsp;73897&nbsp;18429</span>
+      </a>
+
+      <button class="audio-toggle-btn" id="audio-toggle" title="Toggle cyber ambient telemetry sound">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path id="audio-wave-1" d="M15.54 8.46a5 5 0 0 1 0 7.07" opacity="0.4"></path>
+          <path id="audio-wave-2" d="M19.07 4.93a10 10 0 0 1 0 14.14" opacity="0.4"></path>
+        </svg>
+        <span id="audio-label">FX: OFF</span>
+      </button>
+
+      <button id="drawer-toggle" aria-label="Toggle navigation drawer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="mobile-drawer">
+  <a href="#hero">// 01_OVERVIEW</a>
+  <a href="#about">// 02_PROFILE</a>
+  <a href="#research">// 03_RESEARCH_PAPER</a>
+  <a href="#skills">// 04_CAPABILITIES</a>
+  <a href="#projects">// 05_REPOSITORIES</a>
+  <a href="#training">// 06_TRAINING</a>
+  <a href="#contact">// 07_CONTACT</a>
+  <a href="tel:+917389718429" style="color:var(--cyber-emerald)">// CALL: +91 73897 18429</a>
 </div>
 
-<!-- ================= HERO ================= -->
+<!-- ==========================================================================
+     HERO STAGE (3D INTERACTION & INTERACTIVE TERMINAL HUD)
+     ========================================================================== -->
 <main>
 <section id="hero">
-  <canvas id="matrix"></canvas>
-  <div class="container hero-inner">
-    <div class="term" aria-hidden="true">
-      <div class="term-bar"><i></i><i></i><i></i><span>recon --VIPHACKER.100</span></div>
-      <div class="term-body" id="log"></div>
-    </div>
-    <h1><span class="glow">VIPHACKER.100</span> <span id="typing">Aryan Ahirwar<span class="cursor">&#x258C;</span></span></h1>
-    <p class="sub">Ethical hacker &#xB7; web app pentesting &#xB7; OSINT &#xB7; bug bounty &#x2014; breaking systems so you can fix them, and teaching Indian beginners to do it the legal way.</p>
-    <div class="ctas">
-      <a class="btn btn-primary" href="#projects"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="1" width="14" height="14" rx="2" stroke="#04120a" stroke-width="2"/><path d="M5 7l3 3 3-3" stroke="#04120a" stroke-width="2" fill="none" stroke-linecap="square"/></svg> View Projects</a>
-      <a class="btn btn-outline" href="#contact"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 14L6 2h1l4 12h-1.4L8 10H5.3L3.6 14H2zm2.6-4.3h2.8L6.2 4.4h-.1z" fill="#39ff88"/></svg> Hire Me / Contact</a>
+  <div class="container">
+    <div class="hero-grid">
+      
+      <!-- Left Hero Briefing -->
+      <div class="hero-content">
+        <div class="security-badge-group">
+          <div class="security-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            CYBERSECURITY RESEARCHER &amp; EDUCATOR
+          </div>
+          <a href="#research" class="research-badge" style="text-decoration:none">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            PEER-REVIEWED AUTHOR (2026)
+          </a>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="glow-name">Aryan Ahirwar</span>
+          <span class="alias">&gt; Founder &amp; CEO, VIPHACKER.100</span>
+        </h1>
+
+        <p class="hero-subtext">
+          Ethical Hacker specializing in <strong>web application penetration testing</strong>, <strong>OSINT</strong>, and <strong>automated security triage</strong>. Co-author of published research on <strong>AI-based IoT classroom automation</strong> and pioneering high-impact <span class="highlight">Hindi-language cybersecurity training</span>.
+        </p>
+
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#projects">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
+            </svg>
+            Explore Repositories
+          </a>
+          <a class="btn btn-research" href="#research">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            Research Paper
+          </a>
+          <a class="btn btn-secondary" href="tel:+917389718429">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            +91 73897 18429
+          </a>
+          <a class="btn btn-outline" href="https://github.com/VIPHACKER100" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            GitHub
+          </a>
+        </div>
+
+        <div class="interactive-hint">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          Interactive 3D Stage: Click &amp; drag the holographic cyber-sphere to rotate.
+        </div>
+      </div>
+
+      <!-- Right Interactive Cyber Console HUD -->
+      <div class="terminal-hud tilt-card" id="hero-terminal">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+          </div>
+          <div class="terminal-title">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="4 17 10 11 4 5"></polyline>
+              <line x1="12" y1="19" x2="20" y2="19"></line>
+            </svg>
+            recon@viphacker100:~#
+          </div>
+          <div class="terminal-badge">LIVE_SHELL</div>
+        </div>
+
+        <div class="terminal-screen" id="term-screen">
+          <div class="t-line dim">// Initializing VIPHACKER.100 Cyber Telemetry Core v3.8...</div>
+          <div class="t-line dim">// WebGL 3D Matrix: Online. Shaders compiled.</div>
+          <div class="t-line success">[+] Operator: Aryan Ahirwar (VIPHACKER.100)</div>
+          <div class="t-line purple">[+] Research Paper: Vindhyan Bloom Research Journal (VB-2026-0013)</div>
+          <div class="t-line info">[+] Comms Node: +91 73897 18429</div>
+          <div class="t-line info">[+] Education Payload: Hindi-first security curriculum</div>
+          <div class="t-line warning">[!] Ready for interactive queries. Type 'help' or 'paper' below.</div>
+        </div>
+
+        <div class="quick-commands">
+          <button class="quick-cmd-btn" data-cmd="whoami">$ whoami</button>
+          <button class="quick-cmd-btn purple-btn" data-cmd="paper">$ paper</button>
+          <button class="quick-cmd-btn" data-cmd="skills">$ skills</button>
+          <button class="quick-cmd-btn" data-cmd="projects">$ repos</button>
+          <button class="quick-cmd-btn" data-cmd="phone">$ phone</button>
+          <button class="quick-cmd-btn" data-cmd="scan">$ scan</button>
+          <button class="quick-cmd-btn" data-cmd="clear">$ clear</button>
+        </div>
+
+        <div class="terminal-input-row">
+          <span class="terminal-prompt-label">&gt;</span>
+          <input type="text" class="terminal-cli-input" id="cli-input" placeholder="Type a command (try 'paper', 'phone', or 'whoami')..." autocomplete="off" spellcheck="false">
+        </div>
+      </div>
+
     </div>
   </div>
-  <div class="scroll-down">&#x25BC; scroll</div>
 </section>
 
-<!-- ================= ABOUT ================= -->
-<section id="about">
+<!-- ==========================================================================
+     ABOUT / OPERATIONAL DOSSIER
+     ========================================================================== -->
+<section id="about" class="section-wrapper">
   <div class="container">
-    <span class="tag">[ whoami ]</span>
+    <div class="section-hud-header">
+      <span class="section-tag">[ 01_OPERATIONAL_DOSSIER ]</span>
+      <h2 class="section-title">Founder &amp; <span>Cybersecurity Vision</span></h2>
+      <p class="section-desc">
+        Democratizing offensive security research and ethical hacking skills through direct tooling, structured triage, academic research, and vernacular education.
+      </p>
+    </div>
+
     <div class="about-grid">
-      <div>
-        <h2>Founder &amp; CEO, VIPHACKER.100</h2>
-        <p class="body">I'm <span class="hl">Aryan Ahirwar</span>, a BCA student at SAGE University, Indore, and founder of the <span class="hl">VIPHACKER.100</span> brand (est. July 2023).</p>
-        <p class="body">I build security tools, hunt bugs, and run one mission above all: <span class="hl">Hindi-language cybersecurity education for Indian beginners</span> &#x2014; closing the gap for people who want in but were never reached by English-first content.</p>
-        <p class="body">Based in Shujalpur, Madhya Pradesh.</p>
+      <!-- Bio Narrative Card -->
+      <div class="tilt-card bio-card">
+        <h3>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--cyber-emerald)" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          Aryan Ahirwar
+        </h3>
+        
+        <p class="bio-paragraph">
+          I am a Bachelor of Computer Applications (<span class="hl">BCA</span>) student at <span class="cyan">SAGE University, Indore</span>, and the founder of <span class="hl">VIPHACKER.100</span> (established July 2023). Based in Shujalpur, Madhya Pradesh, India.
+        </p>
+
+        <p class="bio-paragraph">
+          Alongside offensive security research and building tools like <span class="cyan">VIPSQLi</span>, <span class="cyan">ReconMaster</span>, and <span class="cyan">DarkWin-AATK</span>, I co-authored peer-reviewed academic research on <span class="purple">AI-based Smart Energy Management using Computer Vision and IoT</span> published in the <span class="cyan">Vindhyan Bloom Research Journal (2026)</span>.
+        </p>
+
+        <p class="bio-paragraph">
+          My primary outreach mission is <span class="hl">Hindi-language cybersecurity education</span> for Indian beginners — breaking English-first language barriers so that aspiring ethical hackers and defense researchers across India can build recognized, legal skillsets.
+        </p>
+
+        <div class="bio-meta-tags">
+          <div class="meta-chip"><span>AFFILIATION</span> SAGE University, Indore</div>
+          <div class="meta-chip"><span>LOCATION</span> Shujalpur, MP, India</div>
+          <div class="meta-chip"><span>DIRECT COMMS</span> +91 73897 18429</div>
+          <div class="meta-chip"><span>RESEARCH</span> Vindhyan Bloom (ISSN 2319-8478)</div>
+          <div class="meta-chip"><span>FOUNDED</span> July 2023</div>
+        </div>
       </div>
-      <div class="stats">
-        <div class="row"><span>brand_founded</span><span class="v">2023</span></div>
-        <div class="row"><span>github_repos</span><span class="v" id="stat-repos">..</span></div>
-        <div class="row"><span>github_stars</span><span class="v" id="stat-stars">..</span></div>
-        <div class="row"><span>github_followers</span><span class="v" id="stat-followers">..</span></div>
-        <div class="row"><span>languages_taught_in</span><span class="v">&#x939;&#x93F;&#x928;&#x94D;&#x926;&#x940;</span></div>
+
+      <!-- Live Telemetry Card -->
+      <div class="tilt-card">
+        <div class="telemetry-header">
+          <div class="telemetry-title">TELEMETRY_LINK</div>
+          <div class="telemetry-live-pulse">
+            <span class="status-dot"></span> LIVE
+          </div>
+        </div>
+
+        <div class="telemetry-rows">
+          <div class="telemetry-row">
+            <span class="telemetry-label">direct_comms_phone</span>
+            <a href="tel:+917389718429" class="telemetry-val" style="text-decoration:none;color:var(--cyber-cyan)">+91 73897 18429</a>
+          </div>
+          <div class="telemetry-row">
+            <span class="telemetry-label">published_research</span>
+            <a href="#research" class="telemetry-val purple-val" style="text-decoration:none">VB-2026-0013 [DOI]</a>
+          </div>
+          <div class="telemetry-row">
+            <span class="telemetry-label">brand_established</span>
+            <span class="telemetry-val">2023.07</span>
+          </div>
+          <div class="telemetry-row">
+            <span class="telemetry-label">github_public_repos</span>
+            <span class="telemetry-val" id="stat-repos">34+</span>
+          </div>
+          <div class="telemetry-row">
+            <span class="telemetry-label">github_total_stars</span>
+            <span class="telemetry-val" id="stat-stars">Loading..</span>
+          </div>
+          <div class="telemetry-row">
+            <span class="telemetry-label">community_followers</span>
+            <span class="telemetry-val" id="stat-followers">Loading..</span>
+          </div>
+          <div class="telemetry-row">
+            <span class="telemetry-label">education_medium</span>
+            <span class="telemetry-val lang">हिन्दी (Hindi)</span>
+          </div>
+          <div class="telemetry-row">
+            <span class="telemetry-label">defense_clearance</span>
+            <span class="telemetry-val" style="color:var(--cyber-cyan)">ETHICAL / LEGAL</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= EXPERTISE ================= -->
-<section id="skills">
+<!-- ==========================================================================
+     ACADEMIC RESEARCH & PUBLICATIONS SECTION
+     ========================================================================== -->
+<section id="research" class="section-wrapper">
   <div class="container">
-    <span class="tag">[ capabilities ]</span>
-    <h2>Expertise</h2>
-    <div class="skills">
-      <div class="skill reveal">
-        <h3>Web App Pentesting <span class="badge verified">[VERIFIED]</span></h3>
-        <ul><li>Burp Suite</li><li>OWASP Top 10</li><li>SQLi</li><li>XSS</li><li>Auth bypass</li></ul>
+    <div class="section-hud-header">
+      <span class="section-tag" style="color:#c084fc;border-color:#a855f7;background:rgba(168,85,247,0.08)">[ 02_PEER_REVIEWED_RESEARCH ]</span>
+      <h2 class="section-title">Published <span>Research Paper</span></h2>
+      <p class="section-desc">
+        Peer-reviewed academic research integrating artificial intelligence, real-time computer vision, and IoT automation for intelligent occupancy-aware energy management.
+      </p>
+    </div>
+
+    <!-- Featured Research Paper HUD Card -->
+    <div class="tilt-card research-feature-card">
+      <div class="research-badge-strip">
+        <span class="res-pill purple">PEER-REVIEWED JOURNAL</span>
+        <span class="res-pill cyan">ISSN: 2319-8478</span>
+        <span class="res-pill gold">VOL. 15 | ISSUE 2</span>
+        <span class="res-pill purple">PUBLISHED: 23 APR 2026</span>
       </div>
-      <div class="skill reveal">
-        <h3>OSINT <span class="badge active">[ACTIVE]</span></h3>
-        <ul><li>Recon</li><li>Footprinting</li><li>Asset discovery</li><li>SOCMINT</li></ul>
+
+      <h3 class="research-paper-title">
+        An AI-Based Occupancy-Aware Smart Energy Management System for Classroom Automation Using Computer Vision and IOT
+      </h3>
+
+      <div class="research-authors">
+        <strong>Authors:</strong> Teena Yadav (Assistant Professor), Anjali Dewda, <strong>Aryan Ahirwar</strong> &bull; <span style="color:var(--cyber-cyan)">SAGE University, Indore</span>
       </div>
-      <div class="skill reveal">
-        <h3>Bug Bounty <span class="badge active">[ACTIVE]</span></h3>
-        <ul><li>Disclosure</li><li>Report writing</li><li>Recon tooling</li><li>Scope discipline</li></ul>
+
+      <div class="research-journal-meta">
+        <div><span style="color:var(--text-muted)">Published in:</span> <span class="j-name">Vindhyan Bloom Research Journal</span> (IT &amp; Business Analytics Section)</div>
+        <div><span style="color:var(--text-muted)">Manuscript Ref:</span> <span style="color:var(--cyber-emerald);font-family:var(--font-mono)">VB-2026-0013</span> &bull; Indexed in Zenodo / Google Scholar</div>
+        <div>
+          <span style="color:var(--text-muted)">DOI:</span> 
+          <a class="doi-link" href="https://doi.org/10.5281/zenodo.19737528" target="_blank" rel="noopener">
+            10.5281/zenodo.19737528 &nearr;
+          </a>
+        </div>
       </div>
-      <div class="skill reveal">
-        <h3>Security Automation <span class="badge verified">[VERIFIED]</span></h3>
-        <ul><li>Scanner dashboards</li><li>Python</li><li>Bash</li><li>API integration</li></ul>
+
+      <p style="color:var(--text-dim);font-size:14px;line-height:1.7;margin-bottom:20px;">
+        This paper designs and evaluates an occupancy-aware automated energy management architecture. Utilizing edge computer vision detection paired with IoT microcontroller relays, the system dynamically monitors classroom density and coordinates illumination and environmental controls in real-time, drastically reducing educational campus power waste while maintaining human-centric comfort.
+      </p>
+
+      <div class="skill-tags-list" style="margin-bottom: 24px;">
+        <span class="skill-tag-pill" style="border-color:rgba(168,85,247,0.4);color:#c084fc">Computer Vision</span>
+        <span class="skill-tag-pill" style="border-color:rgba(168,85,247,0.4);color:#c084fc">IoT Automation</span>
+        <span class="skill-tag-pill">AI Energy Optimization</span>
+        <span class="skill-tag-pill">Edge Computing</span>
+        <span class="skill-tag-pill">Smart Classroom Automation</span>
+        <span class="skill-tag-pill">SAGE University, Indore</span>
       </div>
-      <div class="skill reveal">
-        <h3>Scripting &amp; Tooling <span class="badge verified">[VERIFIED]</span></h3>
-        <ul><li>Python</li><li>JavaScript</li><li>CLI tools</li><li>Git/GitHub</li></ul>
-      </div>
-      <div class="skill reveal">
-        <h3>Hindi Cybersecurity Education <span class="badge active">[ACTIVE]</span></h3>
-        <ul><li>YouTube</li><li>Community</li><li>Beginner curricula</li><li>Live streams</li></ul>
+
+      <div class="research-actions">
+        <a class="btn btn-primary" href="https://vindhyanbloom.com/paper_detail.php?id=VB-2026-0013" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+          View Paper on Vindhyan Bloom
+        </a>
+        <a class="btn btn-secondary" href="https://vindhyanbloom.com/uploads/papers/PUB_18_20260425.pdf" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Download Official PDF
+        </a>
+        <a class="btn btn-outline" href="https://doi.org/10.5281/zenodo.19737528" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          Zenodo DOI Link
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= PROJECTS ================= -->
-<section id="projects">
+<!-- ==========================================================================
+     CAPABILITIES / SKILLS RADAR
+     ========================================================================== -->
+<section id="skills" class="section-wrapper">
   <div class="container">
-    <span class="tag">[ ls ./repos ]</span>
-    <h2>Projects</h2>
-    <div class="cards" id="repo-grid"><div class="loading">$ fetching repos from github...</div></div>
-    <div class="synced" id="sync">$ --</div>
-    <a class="more" href="https://github.com/VIPHACKER100">&#x2192; view all on GitHub</a>
+    <div class="section-hud-header">
+      <span class="section-tag">[ 03_CAPABILITIES_MATRIX ]</span>
+      <h2 class="section-title">Security &amp; <span>Technical Arsenal</span></h2>
+      <p class="section-desc">
+        Specialized skill sets developed through continuous hands-on laboratory simulation, bug bounty methodologies, and automation pipeline engineering.
+      </p>
+    </div>
+
+    <div class="skills-grid">
+      <!-- 1: Web Pentesting -->
+      <div class="tilt-card skill-hud-card">
+        <h4>
+          Web App Pentesting
+          <span class="skill-badge verified">VERIFIED</span>
+        </h4>
+        <div class="skill-meter-wrap">
+          <div class="skill-meter-info">
+            <span>METHODOLOGY: OWASP TOP 10</span>
+            <span>95%</span>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" data-width="95%"></div>
+          </div>
+        </div>
+        <div class="skill-tags-list">
+          <span class="skill-tag-pill">Burp Suite Pro</span>
+          <span class="skill-tag-pill">SQL Injection (SQLi)</span>
+          <span class="skill-tag-pill">Cross-Site Scripting (XSS)</span>
+          <span class="skill-tag-pill">Auth Bypass</span>
+          <span class="skill-tag-pill">CSRF / SSRF</span>
+          <span class="skill-tag-pill">IDOR</span>
+        </div>
+      </div>
+
+      <!-- 2: OSINT -->
+      <div class="tilt-card skill-hud-card">
+        <h4>
+          OSINT &amp; Recon
+          <span class="skill-badge active">ACTIVE</span>
+        </h4>
+        <div class="skill-meter-wrap">
+          <div class="skill-meter-info">
+            <span>INTELLIGENCE &amp; FOOTPRINTING</span>
+            <span>90%</span>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" data-width="90%"></div>
+          </div>
+        </div>
+        <div class="skill-tags-list">
+          <span class="skill-tag-pill">Subdomain Enumeration</span>
+          <span class="skill-tag-pill">Google Dorking</span>
+          <span class="skill-tag-pill">SOCMINT</span>
+          <span class="skill-tag-pill">DNS Validation</span>
+          <span class="skill-tag-pill">Wayback / Archive Mining</span>
+          <span class="skill-tag-pill">Asset Discovery</span>
+        </div>
+      </div>
+
+      <!-- 3: Bug Bounty -->
+      <div class="tilt-card skill-hud-card">
+        <h4>
+          Bug Bounty Hunting
+          <span class="skill-badge active">ACTIVE</span>
+        </h4>
+        <div class="skill-meter-wrap">
+          <div class="skill-meter-info">
+            <span>TRIAGE &amp; DISCLOSURE</span>
+            <span>88%</span>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" data-width="88%"></div>
+          </div>
+        </div>
+        <div class="skill-tags-list">
+          <span class="skill-tag-pill">Responsible Disclosure</span>
+          <span class="skill-tag-pill">Report Writing (CVSS)</span>
+          <span class="skill-tag-pill">Scope Discipline</span>
+          <span class="skill-tag-pill">ParamSpider</span>
+          <span class="skill-tag-pill">Fuzzing</span>
+          <span class="skill-tag-pill">API Security</span>
+        </div>
+      </div>
+
+      <!-- 4: Security Automation -->
+      <div class="tilt-card skill-hud-card">
+        <h4>
+          Security Automation
+          <span class="skill-badge verified">VERIFIED</span>
+        </h4>
+        <div class="skill-meter-wrap">
+          <div class="skill-meter-info">
+            <span>SCAN ENGINES &amp; CLI</span>
+            <span>92%</span>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" data-width="92%"></div>
+          </div>
+        </div>
+        <div class="skill-tags-list">
+          <span class="skill-tag-pill">Python</span>
+          <span class="skill-tag-pill">Bash / PowerShell</span>
+          <span class="skill-tag-pill">Scanner Dashboards</span>
+          <span class="skill-tag-pill">REST API Integration</span>
+          <span class="skill-tag-pill">Modular Scanners</span>
+        </div>
+      </div>
+
+      <!-- 5: AI & IoT Automation Systems -->
+      <div class="tilt-card skill-hud-card">
+        <h4>
+          AI &amp; IoT Research
+          <span class="skill-badge verified">PUBLISHED</span>
+        </h4>
+        <div class="skill-meter-wrap">
+          <div class="skill-meter-info">
+            <span>COMPUTER VISION &amp; AUTOMATION</span>
+            <span>90%</span>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" data-width="90%"></div>
+          </div>
+        </div>
+        <div class="skill-tags-list">
+          <span class="skill-tag-pill">Computer Vision</span>
+          <span class="skill-tag-pill">IoT Sensors &amp; Relays</span>
+          <span class="skill-tag-pill">Multi-Agent Systems</span>
+          <span class="skill-tag-pill">Phishing Detection ML</span>
+          <span class="skill-tag-pill">Local LLM Deployments</span>
+        </div>
+      </div>
+
+      <!-- 6: Vernacular Cybersecurity Training -->
+      <div class="tilt-card skill-hud-card">
+        <h4>
+          Hindi Cybersecurity Training
+          <span class="skill-badge verified">FLAGSHIP</span>
+        </h4>
+        <div class="skill-meter-wrap">
+          <div class="skill-meter-info">
+            <span>VERNACULAR EDUCATION IMPACT</span>
+            <span>98%</span>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" data-width="98%"></div>
+          </div>
+        </div>
+        <div class="skill-tags-list">
+          <span class="skill-tag-pill">Curriculum Design</span>
+          <span class="skill-tag-pill">Live Masterclasses</span>
+          <span class="skill-tag-pill">Telegram Mentorship</span>
+          <span class="skill-tag-pill">Practical Lab Setups</span>
+          <span class="skill-tag-pill">Cyber Safety Advocacy</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ================= TRAINING / COMMUNITY ================= -->
-<section id="training">
+<!-- ==========================================================================
+     PROJECTS COMMAND DECK & GITHUB REPOS
+     ========================================================================== -->
+<section id="projects" class="section-wrapper">
   <div class="container">
-    <span class="tag">[ attack_plan &#x2014; education ]</span>
-    <h2>Hindi Cybersecurity Training</h2>
-    <div class="training-grid">
-      <div class="train reveal">
-        <h3>Free Foundations</h3>
-        <p>Ethical hacking basics for absolute beginners &#x2014; entirely in Hindi. Class targets 100% beginner-friendly.</p>
+    <div class="section-hud-header">
+      <span class="section-tag">[ 04_COMMAND_DECK ]</span>
+      <h2 class="section-title">Open-Source <span>Security Tools</span></h2>
+      <p class="section-desc">
+        Curated repositories and security frameworks engineered by VIPHACKER.100, synced directly with GitHub.
+      </p>
+    </div>
+
+    <!-- Filter Deck & Search -->
+    <div class="projects-deck-filter">
+      <div class="filter-pills" id="project-filters">
+        <button class="filter-btn active" data-filter="all">All Modules</button>
+        <button class="filter-btn" data-filter="tools">Security Tools</button>
+        <button class="filter-btn" data-filter="recon">Recon &amp; OSINT</button>
+        <button class="filter-btn" data-filter="ai">AI / Automation</button>
       </div>
-      <div class="train reveal">
-        <h3>Web &amp; Pentesting Track</h3>
-        <p>Burp Suite, SQLi, XSS and real-world test methodology from the attacker's perspective.</p>
-      </div>
-      <div class="train reveal">
-        <h3>Career Paths</h3>
-        <p>Bug bounty hunting, OSINT, remediation &#x2014; how to convert skills into income + responsible disclosure.</p>
+
+      <div class="search-box-wrap">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="repo-search-input" placeholder="Search security modules...">
       </div>
     </div>
-    <div class="note placeholder" style="margin-top:16px;font-size:13px">[[ADD student/testimonial stat if real numbers exist]]</div>
-    <div class="socials">
-      <a href="https://www.youtube.com/@viphacker100">&#x25B6; YouTube</a>
-      <a href="https://t.me/viphacker100">&#x2708; Telegram</a>
-      <a href="https://www.instagram.com/viphacker.100/">&#x25CE; Instagram</a>
+
+    <!-- Repositories Grid Container -->
+    <div class="repos-grid" id="repos-container">
+      <div class="tilt-card" style="grid-column: 1/-1; text-align: center; padding: 40px;">
+        <div class="status-dot" style="margin: 0 auto 12px;"></div>
+        <div style="color: var(--cyber-emerald); font-size: 14px;">$ connecting to api.github.com/users/VIPHACKER100/repos...</div>
+      </div>
+    </div>
+
+    <!-- Synced Status Bar -->
+    <div class="repo-status-footer">
+      <div id="repo-sync-status">$ sync status: connecting...</div>
+      <a href="https://github.com/VIPHACKER100?tab=repositories" target="_blank" rel="noopener">
+        View full catalog on GitHub &rarr;
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ================= CONTACT ================= -->
-<section id="contact">
+<!-- ==========================================================================
+     HINDI CYBERSECURITY TRAINING & MISSION
+     ========================================================================== -->
+<section id="training" class="section-wrapper">
   <div class="container">
-    <span class="tag">[ establish_connection ]</span>
-    <h2>Contact</h2>
-    <form action="mailto:viphacker.100.org@gmail.com" method="post" enctype="text/plain">
-      <label for="name">// name</label>
-      <input type="text" id="name" name="name" placeholder="your_name" required>
-      <label for="email">// email</label>
-      <input type="email" id="email" name="email" placeholder="you@example.com" required>
-      <label for="msg">// message</label>
-      <textarea id="msg" name="message" placeholder="what's the mission?" required></textarea>
-      <button class="btn btn-primary" type="submit" style="margin-top:18px"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 7.5h8.2L7.5 4.7l1.1-1.1L13.8 8l-5.2 4.4-1.1-1.1 2.7-2.8H2z" fill="#04120a"/></svg> transmit</button>
-    </form>
-    <div class="links-grid">
-      <a href="mailto:viphacker.100.org@gmail.com">email &#x2197;</a>
-      <a href="https://github.com/VIPHACKER100">github &#x2197;</a>
-      <a href="https://www.linkedin.com/in/viphacker100/">linkedin &#x2197;</a>
-      <a href="https://www.youtube.com/@viphacker100">youtube &#x2197;</a>
-      <a href="https://www.instagram.com/viphacker.100/">instagram &#x2197;</a>
-      <a href="https://t.me/viphacker100">telegram &#x2197;</a>
-      <a href="https://www.facebook.com/aryan.ahiwar.52">facebook &#x2197;</a>
+    <div class="section-hud-header">
+      <span class="section-tag">[ 05_VERNACULAR_EDUCATION ]</span>
+      <h2 class="section-title">Hindi <span>Cybersecurity Mission</span></h2>
+      <p class="section-desc">
+        Eliminating language barriers for Indian students. High-quality security pedagogy in Hindi that bridges fundamental theory to practical, defensive and offensive competence.
+      </p>
+    </div>
+
+    <div class="training-showcase">
+      <div class="tilt-card train-card">
+        <div class="train-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+        </div>
+        <h4>01. Ethical Hacking Foundations</h4>
+        <p>
+          Targeted at absolute beginners without prerequisites. Networking fundamentals, Linux CLI navigation, ethical boundaries, and legal frameworks taught 100% in Hindi.
+        </p>
+      </div>
+
+      <div class="tilt-card train-card">
+        <div class="train-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+        </div>
+        <h4>02. Web Pentesting &amp; Bug Bounty</h4>
+        <p>
+          Detailed deep-dives into Burp Suite configuration, SQL injection, authentication flaws, and real-world vulnerability triage with attacker-defense duality.
+        </p>
+      </div>
+
+      <div class="tilt-card train-card">
+        <div class="train-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+        </div>
+        <h4>03. Career &amp; Responsible Disclosure</h4>
+        <p>
+          Guiding Indian students toward recognized bug bounty programs, professional report writing, CVSS scoring, and cybersecurity career navigation.
+        </p>
+      </div>
+    </div>
+
+    <!-- Official Channels Strip -->
+    <div class="channels-strip">
+      <span style="font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px;">Join The Community:</span>
+      <a class="channel-btn youtube" href="https://www.youtube.com/@viphacker100" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        </svg>
+        YouTube Channel
+      </a>
+      <a class="channel-btn telegram" href="https://t.me/viphacker100" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18.718-1.574 7.42-2.28 10.748-.299 1.408-.858 1.637-1.396 1.66-.998.04-1.748-.68-2.716-1.312-1.516-.988-2.37-1.602-3.837-2.569-1.696-1.117-.597-1.73.37-2.733.253-.263 4.654-4.267 4.739-4.63.01-.046.02-.218-.08-.313-.102-.095-.253-.063-.362-.038-.155.035-2.628 1.67-7.417 4.9-1.077.74-2.052.753-2.923.565-.96-.208-1.872-.6-2.784-.962-.112-.045-.224-.09-.333-.134.908-.363 2.183-.758 3.553-1.22 5.362-1.808 8.941-2.99 10.737-3.547 5.127-1.591 6.193-1.868 6.888-1.88.153-.003.496.035.718.216.188.153.24.36.264.506.024.148.01.405-.008.497z"/>
+        </svg>
+        Telegram Group
+      </a>
+      <a class="channel-btn" href="https://www.instagram.com/viphacker.100/" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+        Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     CONTACT / ENCRYPTED TRANSMISSION UPLINK
+     ========================================================================== -->
+<section id="contact" class="section-wrapper">
+  <div class="container">
+    <div class="section-hud-header">
+      <span class="section-tag">[ 06_ESTABLISH_UPLINK ]</span>
+      <h2 class="section-title">Encrypted <span>Transmission &amp; Voice</span></h2>
+      <p class="section-desc">
+        Initiate direct contact for security inquiries, bug triage discussions, academic collaboration, training workshops, or phone uplink.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Transmission Terminal Form -->
+      <div class="tilt-card">
+        <form class="contact-form" action="mailto:viphacker.100.org@gmail.com" method="post" enctype="text/plain">
+          <div class="form-group">
+            <label for="contact-name">// OPERATOR_IDENTITY (NAME)</label>
+            <input type="text" id="contact-name" name="name" class="form-control" placeholder="Identify yourself..." required>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-email">// RETURN_NODE (EMAIL ADDRESS)</label>
+            <input type="email" id="contact-email" name="email" class="form-control" placeholder="address@domain.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-subject">// DISPATCH_SUBJECT</label>
+            <input type="text" id="contact-subject" name="subject" class="form-control" placeholder="Security Audit / Training / Research Collab" required>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-message">// TRANSMISSION_PAYLOAD (MESSAGE)</label>
+            <textarea id="contact-message" name="message" class="form-control" placeholder="State mission parameters..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="margin-top: 8px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+            Transmit Payload
+          </button>
+        </form>
+      </div>
+
+      <!-- Network Nodes & Channels -->
+      <div class="contact-channels-card">
+        <!-- Direct Phone Box -->
+        <div class="tilt-card direct-phone-box">
+          <div class="title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            DIRECT VOICE &amp; COMMS LINE
+          </div>
+          <div class="phone-number" id="copy-phone-trigger" title="Click to copy phone number" style="cursor:pointer">
+            <span>+91 73897 18429</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cyber-cyan)" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </div>
+          <div id="copy-phone-toast" style="font-size: 11px; color: var(--cyber-cyan); display: none;">[+] Phone number copied to clipboard!</div>
+          <div class="phone-actions">
+            <a href="tel:+917389718429" class="phone-chip-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              Direct Dial
+            </a>
+            <a href="https://wa.me/917389718429" target="_blank" rel="noopener" class="phone-chip-btn whatsapp-chip">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+              </svg>
+              WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <!-- Direct Email Box -->
+        <div class="tilt-card direct-email-box">
+          <div class="title">SECURE EMAIL CHANNEL</div>
+          <div class="email" id="copy-email-trigger" title="Click to copy email address">
+            <span>viphacker.100.org@gmail.com</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </div>
+          <div id="copy-toast" style="font-size: 11px; color: var(--cyber-emerald); display: none;">[+] Email copied to clipboard!</div>
+        </div>
+
+        <div class="tilt-card">
+          <div style="font-size: 12px; color: var(--cyber-cyan); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; font-weight: 700;">
+            DIGITAL FOOTPRINT NODES
+          </div>
+          <div class="uplink-channels-list">
+            <a class="uplink-link" href="tel:+917389718429" style="color:var(--cyber-cyan)">
+              <span>Phone Call</span>
+              <span>&nearr;</span>
+            </a>
+            <a class="uplink-link" href="https://wa.me/917389718429" target="_blank" rel="noopener" style="color:#25d366">
+              <span>WhatsApp</span>
+              <span>&nearr;</span>
+            </a>
+            <a class="uplink-link" href="https://github.com/VIPHACKER100" target="_blank" rel="noopener">
+              <span>GitHub</span>
+              <span>&nearr;</span>
+            </a>
+            <a class="uplink-link" href="https://www.linkedin.com/in/viphacker100/" target="_blank" rel="noopener">
+              <span>LinkedIn</span>
+              <span>&nearr;</span>
+            </a>
+            <a class="uplink-link" href="https://vindhyanbloom.com/paper_detail.php?id=VB-2026-0013" target="_blank" rel="noopener" style="color:#c084fc">
+              <span>Research</span>
+              <span>&nearr;</span>
+            </a>
+            <a class="uplink-link" href="https://www.youtube.com/@viphacker100" target="_blank" rel="noopener">
+              <span>YouTube</span>
+              <span>&nearr;</span>
+            </a>
+            <a class="uplink-link" href="https://t.me/viphacker100" target="_blank" rel="noopener">
+              <span>Telegram</span>
+              <span>&nearr;</span>
+            </a>
+            <a class="uplink-link" href="https://www.instagram.com/viphacker.100/" target="_blank" rel="noopener">
+              <span>Instagram</span>
+              <span>&nearr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 </main>
 
-<!-- ================= FOOTER ================= -->
+<!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
 <footer>
-  <div>&#xA9; <span data-year>2026</span> <span class="h">VIPHACKER.100</span> &#x2014; Aryan Ahirwar</div>
-  <div style="margin-top:6px">$ chmod +x curiosity &amp;&amp; keep learning</div>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="name">VIPHACKER.100 &bull; Aryan Ahirwar</div>
+        <div class="motto">$ chmod +x curiosity &amp;&amp; keep defending ethically &bull; Comms: +91 73897 18429</div>
+      </div>
+
+      <div class="footer-meta">
+        <div>&copy; <span id="year-span">2026</span> Aryan Ahirwar. All rights reserved.</div>
+        <div style="margin-top: 4px; color: var(--text-dim);">SAGE University Indore &bull; Shujalpur, MP, India</div>
+      </div>
+    </div>
+  </div>
 </footer>
 
+<!-- ==========================================================================
+     CORE 3D ENGINE & CLIENT LOGIC SCRIPT
+     ========================================================================== -->
 <script>
-/* ---------- recon log typing animation ---------- */
-const log = document.getElementById('log');
-const LINES = [
-  ['$ whoami','ok'],
-  ['VIPHACKER.100',null],
-  ['$ sudo recon --target unknown',null],
-  ['[+] target acquired :: new_skills',null],
-  ['[+] scanning :: open_ports (web, osint, bounty)',null],
-  ['[+] found 7/7 expl0itable_opportunities',null],
-  ['[+] deploying education payload :: \u0939\u093F\u0928\u094D\u0926\u0940',null],
-  ['[+] connection established \u2014 READY','ok'],
-];
-let li = 0, ci = 0, node = null;
-function typeLine(){
-  if (li >= LINES.length) return;
-  const [text, cls] = LINES[li];
-  if (ci === 0){
-    node = document.createElement('span');
-    node.className = 'ln' + (cls ? ' ' + cls : '');
-    node.classList.add('typing');
-    log.appendChild(node);
-  }
-  node.textContent = text.slice(0, ++ci);
-  if (ci < text.length) setTimeout(typeLine, 12);
-  else { node.classList.remove('typing'); ci = 0; li++; setTimeout(typeLine, 220); }
-}
-typeLine();
+/* ==========================================================================
+   1. THREE.JS 3D HOLOGRAPHIC CYBER-GLOBE & PARTICLES
+   ========================================================================== */
+(function initThreeScene() {
+  const container = document.getElementById('webgl-container');
+  if (!container || typeof THREE === 'undefined') return;
 
-/* ---------- matrix rain ---------- */
-const hero = document.getElementById('hero');
-const cv = document.getElementById('matrix');
-if (cv && hero && !matchMedia('(prefers-reduced-motion: reduce)').matches){
-  const ctx = cv.getContext('2d');
-  const resize = () => { cv.width = hero.offsetWidth; cv.height = hero.offsetHeight; };
-  resize(); addEventListener('resize', resize);
-  const chars = '01\u30A2\u30A4\u30A6\u30A8\u30AA\u30AB\u30AD\u30AF\u30B1\u30B3\u30B5\u30B7\u30B9\u30BB\u30BD\u30BF\u30C1\u30C4\u30C6\u30C8';
-  const fs = 14; let cols, drops;
-  const init = () => { cols = Math.ceil(cv.width / fs); drops = Array(cols).fill(1); };
-  init();
-  setInterval(() => {
-    ctx.fillStyle = 'rgba(10,14,10,.06)'; ctx.fillRect(0,0,cv.width,cv.height);
-    ctx.fillStyle = '#39ff88'; ctx.font = fs + 'px JetBrains Mono';
-    for (let i=0;i<drops.length;i++){
-      ctx.fillText(chars[Math.floor(Math.random()*chars.length)], i*fs, drops[i]*fs);
-      if (drops[i]*fs > cv.height && Math.random() > .975) drops[i] = 0;
-      drops[i]++;
-    }
-  }, 50);
-}
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 28;
 
-/* ---------- live repos + stats from GitHub API ---------- */
-const BLOCK = ['VIPBOMBER-V2','tbomb','SnapBrute','SocialMediaHackingToolkit','insta-hack','defacement','Activate_Microsoft_Office_All'];
-const DESCS = {
-  'ReconMaster':'Comprehensive reconnaissance framework integrating multiple security tools. Automates subdomain discovery, DNS validation, vulnerability scanning, and reporting.',
-  'VIPSQLi':'Professional, fast, and safe SQL injection triage tool that identifies real SQLi vulnerabilities in 30 seconds \u2014 without exploits or illegal payloads.',
-  'DarkWin-AATK':'Advanced Automation Toolkit for ethical hackers and bug bounty hunters.',
-  'vip-sqli-scanner-dashboard':'Web dashboard for the VIPSQLi scanner engine.',
-  'Inkflow':'AI handwritten-notes generator.',
-  'LLM-COUNCIL':'A five-persona AI council that argues, peer-reviews itself anonymously, and forces a single non-hedging decision \u2014 instead of the usual balanced LLM mush.',
-  'DarkWin-NGASR':'Modular security-research automation platform: 500+ scan modules, AI-powered vulnerability classification, distributed scanning, full web dashboard.',
-  'PhishShield-Engine':'AI-powered email security platform detecting spam, phishing, malicious URLs, homograph spoofing, and identity impersonation.',
-  'BurpSuiteInstaller':'Burp Suite Professional \u2014 latest version installer (2026).',
-  'VIPRecon':'Reconnaissance helper for target enumeration.',
-  'ADVWebRecon':'Advanced web reconnaissance tooling.',
-  'DarkWin-OS-scripts':'Hacker-inspired Windows customization pack for power users and security professionals.',
-  'DARKWIN-OS-SCRIPT':'Windows customization scripting for the DarkWin OS line.',
-  'DarkWin-Os-Website':'Marketing site for the DarkWin Windows customization pack.',
-  'ATTENDANCE_FACE_RECOGNITION':'Attendance tracking via face recognition.',
-  'OSINT-TOOLs':'Maintained collection focused on making open-source intelligence tools accessible for researchers and forensics practitioners.',
-  'BigBountyRecon':'66 different techniques using Google dorks and open-source tools to expedite initial recon on a target organisation.',
-  'ParamSpider':'Mining URLs from the dark corners of web archives for bug hunting, fuzzing, and further probing.',
-  'recon-ninja':'Recon-Ninja \u2014 faster initial recon.',
-  'jarvis-bilingual-adv-ai-assistant':'Futuristic cross-platform voice-activated AI assistant with full system control. English + Hindi (Hinglish), cyberpunk UI inspired by Tony Stark\'s JARVIS.',
-  'jarvis-bilingual-ai-assistant':'Bilingual voice assistant (English/Hindi).',
-  'sofiya-bilingual-ai-assistant':'Bilingual AI assistant companion.',
-  'nexus-elite-vip-assistant':'The peak of mobile AI interface \u2014 reasoning, cinematic video, pro-grade imagery, and real-time biometric link simulation.',
-  'neurocore-ai':'AI assistant / neural interface project.',
-  'vip-adv-assistant':'Advanced VIP assistant.',
-  'USB-Uncensored-LLM':'Zero-install portable local AI environment \u2014 run Gemma, Qwen, NemoMix directly from a USB drive. Air-gapped, cross-platform.',
-  'STUDYHUB':'Comprehensive educational platform \u2014 file sharing (notes/assignments), real-time messaging, anonymous study rooms, collaborative learning.',
-  'studyhub_v0.5':'Full-featured student resource-sharing platform \u2014 notes, assignments, study materials. Powered by PHP + MySQL for easy deployment.',
-  'commando-vm':'Mandiant\'s Commando VM \u2014 fully customizable Windows-based pentesting virtual machine distribution.',
-  'ig.osi':'Information-gathering / OSINT tool for Instagram.',
-  'vip-codelearn':'Code-learning platform by VIPHACKER.100.',
-  'VIP-COMMUNITY':'VIPHACKER.100 community hub.'
-};
-const TAGS = {
-  'ReconMaster':['python','recon','automation'],
-  'VIPSQLi':['python','sqli'],
-  'DarkWin-AATK':['python','automation'],
-  'vip-sqli-scanner-dashboard':['typescript','dashboard'],
-  'Inkflow':['javascript','ai'],
-  'LLM-COUNCIL':['python','multi-agent','ai'],
-  'DarkWin-NGASR':['python','automation'],
-  'PhishShield-Engine':['python','ml'],
-  'BurpSuiteInstaller':['batchfile','tooling'],
-  'VIPRecon':['python','recon'],
-  'ADVWebRecon':['python','recon'],
-  'DarkWin-OS-scripts':['powershell','windows'],
-  'DARKWIN-OS-SCRIPT':['powershell','windows'],
-  'DarkWin-Os-Website':['html','windows'],
-  'ATTENDANCE_FACE_RECOGNITION':['python','cv'],
-  'OSINT-TOOLs':['html','osint'],
-  'BigBountyRecon':['c#','recon','dorks'],
-  'ParamSpider':['python','recon'],
-  'recon-ninja':['javascript','recon'],
-  'jarvis-bilingual-adv-ai-assistant':['python','ai','voice'],
-  'jarvis-bilingual-ai-assistant':['typescript','ai'],
-  'sofiya-bilingual-ai-assistant':['python','ai'],
-  'nexus-elite-vip-assistant':['typescript','ai','mobile'],
-  'neurocore-ai':['typescript','ai'],
-  'vip-adv-assistant':['javascript','ai'],
-  'USB-Uncensored-LLM':['html','ai','local'],
-  'STUDYHUB':['javascript','education'],
-  'studyhub_v0.5':['javascript','php','mysql'],
-  'commando-vm':['powershell','pentesting'],
-  'ig.osi':['python','osint'],
-  'vip-codelearn':['javascript','education'],
-  'VIP-COMMUNITY':['html','community']
-};
-const FALLBACK_REPOS = [
-  {name:'ReconMaster',html_url:'https://github.com/VIPHACKER100/ReconMaster',stars:2,topics:['python','recon','automation']},
-  {name:'Inkflow',html_url:'https://github.com/VIPHACKER100/Inkflow',stars:0,topics:['javascript','ai']},
-  {name:'VIPSQLi',html_url:'https://github.com/VIPHACKER100/VIPSQLi',stars:1,topics:['python','sqli']},
-  {name:'DarkWin-AATK',html_url:'https://github.com/VIPHACKER100/DarkWin-AATK',stars:1,topics:['python','automation']},
-  {name:'LLM-COUNCIL',html_url:'https://github.com/VIPHACKER100/LLM-COUNCIL',stars:0,topics:['python','multi-agent','ai']},
-  {name:'vip-sqli-scanner-dashboard',html_url:'https://github.com/VIPHACKER100/vip-sqli-scanner-dashboard',stars:1,topics:['typescript','dashboard']},
-  {name:'DarkWin-NGASR',html_url:'https://github.com/VIPHACKER100/DarkWin-NGASR',stars:1,topics:['python','automation']},
-  {name:'PhishShield-Engine',html_url:'https://github.com/VIPHACKER100/PhishShield-Engine',stars:1,topics:['python','ml']},
-  {name:'commando-vm',html_url:'https://github.com/VIPHACKER100/commando-vm',stars:0,topics:['powershell','pentesting'],fork:true}
-];
-function renderCards(list){
-  const grid = document.getElementById('repo-grid');
-  if (!grid) return;
-  grid.innerHTML = list.map(r => {
-    const d = r.description || DESCS[r.name] || '(no description yet)';
-    const t = r.topics && r.topics.length ? r.topics.slice(0,4) : (TAGS[r.name] || [(r.language||'repo').toLowerCase()]);
-    const st = r.stargazers_count ? ` \u2605${r.stargazers_count}` : '';
-    const fork = r.fork ? ` <span style="color:var(--amber);font-size:11px">[fork]</span>` : '';
-    return `<div class="card reveal">
-      <h3>${r.name}${st}${fork}</h3>
-      <p>${d}</p>
-      <div class="tags">${t.map(x => `<span>${x}</span>`).join('')}</div>
-      <div class="links"><a href="${r.html_url}">source \u2197</a></div>
-    </div>`;
-  }).join('');
-  grid.querySelectorAll('.reveal').forEach(el => io.observe(el));
-}
-(function loadRepos(){
-  const grid = document.getElementById('repo-grid');
-  if (!grid) return;
-  Promise.all([
-    fetch('https://api.github.com/users/VIPHACKER100').then(r => r.ok ? r.json() : null).catch(() => null),
-    fetch('https://api.github.com/users/VIPHACKER100/repos?per_page=100&sort=updated').then(r => r.ok ? r.json() : null).catch(() => null)
-  ]).then(([u, repos]) => {
-    if (!repos || !Array.isArray(repos)) {
-      renderCards(FALLBACK_REPOS);
-      const sd = document.getElementById('sync');
-      if (sd) sd.textContent = '$ offline /// static snapshot';
-      return;
-    }
-    const stars = repos.reduce((s, r) => s + r.stargazers_count, 0);
-    const live = repos.filter(r => !BLOCK.includes(r.name));
-    renderCards(live);
-    if (u) {
-      const sr = document.getElementById('stat-repos');
-      const ss = document.getElementById('stat-stars');
-      const sf = document.getElementById('stat-followers');
-      const sd = document.getElementById('sync');
-      if (sr) sr.textContent = u.public_repos;
-      if (ss) ss.textContent = stars;
-      if (sf) sf.textContent = u.followers;
-      if (sd) sd.textContent = '$ synced ' + new Date().toLocaleTimeString() + ' /// live api.github.com';
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  container.appendChild(renderer.domElement);
+
+  // Group for the 3D Cyber Core
+  const coreGroup = new THREE.Group();
+  scene.add(coreGroup);
+
+  // Position core slightly to the right on desktop, center on mobile
+  function updateCorePosition() {
+    if (window.innerWidth > 1024) {
+      coreGroup.position.set(7, 0, 0);
     } else {
-      const sr = document.getElementById('stat-repos');
-      const ss = document.getElementById('stat-stars');
-      const sf = document.getElementById('stat-followers');
-      if (sr) sr.textContent = FALLBACK_REPOS.length + '+';
-      if (ss) ss.textContent = FALLBACK_REPOS.reduce((s, r) => s + r.stars, 0);
-      if (sf) sf.textContent = '--';
+      coreGroup.position.set(0, 2, -4);
     }
-  }).catch(() => {
-    renderCards(FALLBACK_REPOS);
-    const sd = document.getElementById('sync');
-    if (sd) sd.textContent = '$ offline /// static snapshot';
+  }
+  updateCorePosition();
+
+  // 1. Holographic Wireframe Sphere
+  const sphereGeo = new THREE.IcosahedronGeometry(9, 3);
+  const sphereMat = new THREE.MeshBasicMaterial({
+    color: 0x00ff88,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.22
+  });
+  const cyberSphere = new THREE.Mesh(sphereGeo, sphereMat);
+  coreGroup.add(cyberSphere);
+
+  // 2. Inner Glowing Core Sphere
+  const innerGeo = new THREE.SphereGeometry(6.5, 24, 24);
+  const innerMat = new THREE.MeshBasicMaterial({
+    color: 0x00e5ff,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.12
+  });
+  const innerSphere = new THREE.Mesh(innerGeo, innerMat);
+  coreGroup.add(innerSphere);
+
+  // 3. Orbiting Scanner Rings
+  const ring1Geo = new THREE.RingGeometry(11.2, 11.4, 64);
+  const ring1Mat = new THREE.MeshBasicMaterial({
+    color: 0x00ff88,
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 0.65
+  });
+  const ring1 = new THREE.Mesh(ring1Geo, ring1Mat);
+  ring1.rotation.x = Math.PI / 3;
+  coreGroup.add(ring1);
+
+  const ring2Geo = new THREE.RingGeometry(12.8, 13.0, 64);
+  const ring2Mat = new THREE.MeshBasicMaterial({
+    color: 0x00e5ff,
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 0.45
+  });
+  const ring2 = new THREE.Mesh(ring2Geo, ring2Mat);
+  ring2.rotation.y = Math.PI / 4;
+  ring2.rotation.x = -Math.PI / 6;
+  coreGroup.add(ring2);
+
+  // 4. Pulsing Security Nodes on the Sphere
+  const nodeCount = 36;
+  const nodeGeo = new THREE.BufferGeometry();
+  const nodePositions = [];
+  for (let i = 0; i < nodeCount; i++) {
+    const phi = Math.acos(-1 + (2 * i) / nodeCount);
+    const theta = Math.sqrt(nodeCount * Math.PI) * phi;
+    const r = 9.1;
+    const x = r * Math.cos(theta) * Math.sin(phi);
+    const y = r * Math.sin(theta) * Math.sin(phi);
+    const z = r * Math.cos(phi);
+    nodePositions.push(x, y, z);
+  }
+  nodeGeo.setAttribute('position', new THREE.Float32BufferAttribute(nodePositions, 3));
+  const nodeMat = new THREE.PointsMaterial({
+    color: 0x00ff88,
+    size: 0.75,
+    transparent: true,
+    opacity: 0.9
+  });
+  const nodes = new THREE.Points(nodeGeo, nodeMat);
+  coreGroup.add(nodes);
+
+  // 5. Global Ambient Cyber Particle Field
+  const particleCount = 750;
+  const particleGeo = new THREE.BufferGeometry();
+  const particlePositions = [];
+  const particleColors = [];
+
+  const colorEmerald = new THREE.Color(0x00ff88);
+  const colorCyan = new THREE.Color(0x00e5ff);
+  const colorWhite = new THREE.Color(0xffffff);
+
+  for (let i = 0; i < particleCount; i++) {
+    const px = (Math.random() - 0.5) * 80;
+    const py = (Math.random() - 0.5) * 60;
+    const pz = (Math.random() - 0.5) * 60;
+    particlePositions.push(px, py, pz);
+
+    const rand = Math.random();
+    const c = rand > 0.6 ? colorEmerald : (rand > 0.25 ? colorCyan : colorWhite);
+    particleColors.push(c.r, c.g, c.b);
+  }
+
+  particleGeo.setAttribute('position', new THREE.Float32BufferAttribute(particlePositions, 3));
+  particleGeo.setAttribute('color', new THREE.Float32BufferAttribute(particleColors, 3));
+
+  const particleMat = new THREE.PointsMaterial({
+    size: 0.35,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.55
+  });
+  const particleField = new THREE.Points(particleGeo, particleMat);
+  scene.add(particleField);
+
+  // Interactive Mouse & Touch Drag Controls for 3D Globe
+  let mouseX = 0, mouseY = 0;
+  let targetRotationX = 0, targetRotationY = 0;
+  let isDragging = false;
+  let previousMousePosition = { x: 0, y: 0 };
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+
+    if (isDragging) {
+      const deltaX = e.clientX - previousMousePosition.x;
+      const deltaY = e.clientY - previousMousePosition.y;
+      targetRotationY += deltaX * 0.006;
+      targetRotationX += deltaY * 0.006;
+      previousMousePosition = { x: e.clientX, y: e.clientY };
+    }
+  });
+
+  window.addEventListener('mousedown', (e) => {
+    if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA' && e.target.tagName !== 'BUTTON' && e.target.tagName !== 'A') {
+      isDragging = true;
+      previousMousePosition = { x: e.clientX, y: e.clientY };
+    }
+  });
+
+  window.addEventListener('mouseup', () => { isDragging = false; });
+
+  // Touch Support
+  window.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 1 && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA' && e.target.tagName !== 'A') {
+      isDragging = true;
+      previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchmove', (e) => {
+    if (isDragging && e.touches.length === 1) {
+      const deltaX = e.touches[0].clientX - previousMousePosition.x;
+      const deltaY = e.touches[0].clientY - previousMousePosition.y;
+      targetRotationY += deltaX * 0.007;
+      targetRotationX += deltaY * 0.007;
+      previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchend', () => { isDragging = false; });
+
+  // Resize Handler
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    updateCorePosition();
+  });
+
+  // Animation Loop
+  let clock = new THREE.Clock();
+  function animate() {
+    requestAnimationFrame(animate);
+    const delta = clock.getDelta();
+
+    // Constant auto rotation
+    if (!isDragging) {
+      targetRotationY += 0.003;
+      targetRotationX += 0.001;
+    }
+
+    // Smooth inertia lerp
+    coreGroup.rotation.y += (targetRotationY - coreGroup.rotation.y) * 0.05;
+    coreGroup.rotation.x += (targetRotationX - coreGroup.rotation.x) * 0.05;
+
+    // Rings independent rotation
+    ring1.rotation.z += 0.01;
+    ring2.rotation.z -= 0.008;
+
+    // Camera reacts to mouse parallax
+    camera.position.x += (mouseX * 2.5 - camera.position.x) * 0.04;
+    camera.position.y += (-mouseY * 2.5 - camera.position.y) * 0.04;
+    camera.lookAt(0, 0, 0);
+
+    // Particle field slow drift
+    particleField.rotation.y += 0.0004;
+
+    renderer.render(scene, camera);
+  }
+  animate();
+})();
+
+/* ==========================================================================
+   2. 3D CARD TILT DYNAMICS & SPECULAR LIGHT GLARE
+   ========================================================================== */
+(function init3DTiltCards() {
+  const cards = document.querySelectorAll('.tilt-card');
+  if (!cards.length) return;
+
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+
+      // 3D tilt calculation
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -7;
+      const rotateY = ((x - centerX) / centerX) * 7;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateZ(4px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+    });
   });
 })();
 
-/* ---------- scroll reveal ---------- */
-const io = new IntersectionObserver(es => es.forEach(e => {
-  if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-}), { threshold: .15 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+/* ==========================================================================
+   3. WEB AUDIO SYNTHESIZER (SUBTLE CYBER BLIPS & CLICKS)
+   ========================================================================== */
+const CyberAudio = (function() {
+  let audioCtx = null;
+  let isMuted = true;
 
-/* ---------- active nav highlight ---------- */
-const sections = document.querySelectorAll('section');
-const navA = document.querySelectorAll('#nav-links a');
-const spy = new IntersectionObserver(es => es.forEach(e => {
-  if (e.isIntersecting){
-    const id = '#' + e.target.id;
-    navA.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+  function initCtx() {
+    if (!audioCtx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (AudioContext) audioCtx = new AudioContext();
+    }
   }
-}), { rootMargin: '-40% 0px -55% 0px' });
-sections.forEach(s => spy.observe(s));
 
-/* ---------- scroll progress ---------- */
-const prog = document.getElementById('progress');
-if (prog){
-  addEventListener('scroll', () => {
-    const max = document.documentElement.scrollHeight - innerHeight;
-    prog.style.width = (max > 0 ? (scrollY / max) * 100 : 0) + '%';
-  }, { passive: true });
+  function playTone(freq, type = 'sine', duration = 0.06, gainLevel = 0.04) {
+    if (isMuted) return;
+    initCtx();
+    if (!audioCtx || audioCtx.state !== 'running') return;
+
+    try {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+      gain.gain.setValueAtTime(gainLevel, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    } catch(e) {}
+  }
+
+  return {
+    toggle() {
+      initCtx();
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      isMuted = !isMuted;
+      return !isMuted;
+    },
+    isMuted() { return isMuted; },
+    click() { playTone(1200, 'triangle', 0.04, 0.03); },
+    cmd() { playTone(880, 'sine', 0.07, 0.04); },
+    success() { playTone(1760, 'sine', 0.08, 0.04); },
+    error() { playTone(320, 'sawtooth', 0.12, 0.05); }
+  };
+})();
+
+// Audio Toggle Button Hook
+const audioToggleBtn = document.getElementById('audio-toggle');
+const audioLabel = document.getElementById('audio-label');
+const audioWave1 = document.getElementById('audio-wave-1');
+const audioWave2 = document.getElementById('audio-wave-2');
+
+if (audioToggleBtn) {
+  audioToggleBtn.addEventListener('click', () => {
+    const isNowOn = CyberAudio.toggle();
+    if (isNowOn) {
+      audioToggleBtn.classList.add('sound-on');
+      audioLabel.textContent = 'FX: ON';
+      if (audioWave1) audioWave1.setAttribute('opacity', '1');
+      if (audioWave2) audioWave2.setAttribute('opacity', '1');
+      CyberAudio.success();
+    } else {
+      audioToggleBtn.classList.remove('sound-on');
+      audioLabel.textContent = 'FX: OFF';
+      if (audioWave1) audioWave1.setAttribute('opacity', '0.4');
+      if (audioWave2) audioWave2.setAttribute('opacity', '0.4');
+    }
+  });
 }
 
-/* ---------- auto footer year ---------- */
-document.querySelectorAll('footer [data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
+// Add click sounds to all interactive buttons
+document.querySelectorAll('.btn, .quick-cmd-btn, .filter-btn, .channel-btn, .phone-chip-btn').forEach(btn => {
+  btn.addEventListener('click', () => CyberAudio.click());
+});
 
-/* ---------- mobile drawer ---------- */
-const drawer = document.getElementById('drawer');
-const btn = document.getElementById('drawer-btn');
-btn.addEventListener('click', () => drawer.classList.toggle('open'));
-drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
+/* ==========================================================================
+   4. INTERACTIVE CYBER COMMAND CONSOLE (HUD)
+   ========================================================================== */
+(function initInteractiveTerminal() {
+  const screen = document.getElementById('term-screen');
+  const input = document.getElementById('cli-input');
+  if (!screen || !input) return;
+
+  function printLine(text, type = '') {
+    const line = document.createElement('div');
+    line.className = 't-line' + (type ? ' ' + type : '');
+    line.textContent = text;
+    screen.appendChild(line);
+    screen.scrollTop = screen.scrollHeight;
+  }
+
+  const COMMANDS = {
+    'help': () => {
+      printLine('[+] Available Commands:', 'info');
+      printLine('  whoami     - Identity & credentials');
+      printLine('  paper      - Peer-reviewed research publication & DOI');
+      printLine('  phone      - Direct voice / comm node phone number');
+      printLine('  skills     - Capabilities & pentesting telemetry');
+      printLine('  repos      - Open source project modules');
+      printLine('  scan       - Run simulated vulnerability triage');
+      printLine('  mission    - Hindi cybersecurity education charter');
+      printLine('  contact    - Uplink communication coordinates');
+      printLine('  sound      - Toggle cyber synthesized telemetry sound');
+      printLine('  clear      - Clear terminal screen');
+    },
+    'whoami': () => {
+      printLine('[+] IDENTIFICATION:', 'success');
+      printLine('  Name: Aryan Ahirwar');
+      printLine('  Alias: VIPHACKER.100');
+      printLine('  Degree: BCA @ SAGE University, Indore');
+      printLine('  Phone: +91 73897 18429');
+      printLine('  Research: Published Author in Vindhyan Bloom Research Journal (2026)');
+      printLine('  Focus: Ethical Hacking, Bug Bounty, OSINT, Vernacular Training');
+    },
+    'paper': () => {
+      printLine('[+] PUBLISHED PEER-REVIEWED RESEARCH PAPER:', 'purple');
+      printLine('  Title: An AI-Based Occupancy-Aware Smart Energy Management System for Classroom Automation Using Computer Vision and IOT', 'info');
+      printLine('  Authors: Teena Yadav, Anjali Dewda, Aryan Ahirwar');
+      printLine('  Affiliation: SAGE University, Indore');
+      printLine('  Journal: Vindhyan Bloom Research Journal (ISSN 2319-8478)');
+      printLine('  Issue: Vol. 15 | Issue 2 (April 2026)');
+      printLine('  DOI: 10.5281/zenodo.19737528');
+      printLine('  Direct Link: https://vindhyanbloom.com/paper_detail.php?id=VB-2026-0013', 'success');
+      printLine('  PDF Link: https://vindhyanbloom.com/uploads/papers/PUB_18_20260425.pdf', 'dim');
+    },
+    'research': () => COMMANDS['paper'](),
+    'phone': () => {
+      printLine('[+] DIRECT VOICE / COMM NODE:', 'success');
+      printLine('  Phone Number: +91 73897 18429', 'info');
+      printLine('  Direct Call: tel:+917389718429');
+      printLine('  WhatsApp Uplink: https://wa.me/917389718429', 'success');
+    },
+    'call': () => COMMANDS['phone'](),
+    'skills': () => {
+      printLine('[+] CORE CAPABILITIES:', 'info');
+      printLine('  • Web App Pentesting: Burp Suite, SQLi, XSS, OWASP Top 10');
+      printLine('  • OSINT: Footprinting, DNS Enumeration, SOCMINT');
+      printLine('  • AI & IoT: Computer Vision, Automation Systems');
+      printLine('  • Automation: Python, Bash, Security Scanners, APIs');
+      printLine('  • Education: Hindi-language cybersecurity curriculum');
+    },
+    'repos': () => {
+      printLine('[+] KEY REPOSITORIES:', 'success');
+      printLine('  - ReconMaster (Automation recon framework)');
+      printLine('  - VIPSQLi (Safe 30-sec SQLi triage engine)');
+      printLine('  - DarkWin-AATK (Automation toolkit for hackers)');
+      printLine('  - LLM-COUNCIL (Multi-agent security decision AI)');
+      printLine('  - PhishShield-Engine (AI anti-phishing defense)');
+    },
+    'projects': () => COMMANDS['repos'](),
+    'scan': () => {
+      printLine('[*] Starting target port enumeration...', 'dim');
+      setTimeout(() => printLine('[+] 80/tcp  OPEN  (http - nginx/1.22)', 'info'), 250);
+      setTimeout(() => printLine('[+] 443/tcp OPEN  (https - TLS 1.3)', 'info'), 500);
+      setTimeout(() => printLine('[+] 8080/tcp OPEN (triage-api viphacker100)', 'info'), 750);
+      setTimeout(() => printLine('[+] Scan complete: 0 vulnerabilities found in defense perimeter.', 'success'), 1000);
+    },
+    'mission': () => {
+      printLine('[+] MISSION STATEMENT:', 'info');
+      printLine('  To provide rigorous, accessible, legal cybersecurity');
+      printLine('  education completely in Hindi for Indian beginners.');
+    },
+    'contact': () => {
+      printLine('[+] UPLINK ADDRESSES & COMMS:', 'info');
+      printLine('  Phone / WhatsApp: +91 73897 18429', 'success');
+      printLine('  Email: viphacker.100.org@gmail.com');
+      printLine('  GitHub: https://github.com/VIPHACKER100');
+      printLine('  YouTube: https://www.youtube.com/@viphacker100');
+      printLine('  Telegram: https://t.me/viphacker100');
+    },
+    'sound': () => {
+      audioToggleBtn.click();
+      printLine(`[+] Audio FX is now: ${CyberAudio.isMuted() ? 'MUTED' : 'ACTIVE'}`, 'info');
+    },
+    'clear': () => {
+      screen.innerHTML = '';
+      printLine('[+] Terminal cleared.', 'dim');
+    }
+  };
+
+  function executeCommand(raw) {
+    const cmd = raw.trim().toLowerCase();
+    printLine(`recon@viphacker100:~# ${raw}`, 'prompt');
+    CyberAudio.cmd();
+
+    if (!cmd) return;
+
+    if (COMMANDS[cmd]) {
+      COMMANDS[cmd]();
+    } else {
+      printLine(`[-] command not recognized: "${raw}". Type 'help' for options.`, 'warning');
+      CyberAudio.error();
+    }
+  }
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const val = input.value;
+      input.value = '';
+      executeCommand(val);
+    }
+  });
+
+  // Quick Command buttons
+  document.querySelectorAll('.quick-cmd-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cmd = btn.getAttribute('data-cmd');
+      if (cmd) executeCommand(cmd);
+    });
+  });
+})();
+
+/* ==========================================================================
+   5. LIVE GITHUB API REPOSITORIES DECK WITH FILTER & SEARCH
+   ========================================================================== */
+(function initReposDeck() {
+  const container = document.getElementById('repos-container');
+  const syncStatus = document.getElementById('repo-sync-status');
+  const searchInput = document.getElementById('repo-search-input');
+  const filterBtns = document.querySelectorAll('#project-filters .filter-btn');
+
+  const BLOCK_LIST = [
+    'VIPBOMBER-V2','tbomb','SnapBrute','SocialMediaHackingToolkit',
+    'insta-hack','defacement','Activate_Microsoft_Office_All'
+  ];
+
+  const DESCRIPTIONS = {
+    'ReconMaster': 'Comprehensive reconnaissance framework integrating multiple security tools. Automates subdomain discovery, DNS validation, and asset mapping.',
+    'VIPSQLi': 'Fast, accurate, and safe SQL injection triage tool that identifies real vulnerabilities in under 30 seconds without destructive payloads.',
+    'DarkWin-AATK': 'Advanced Automation Toolkit tailored for ethical hackers, bug bounty researchers, and rapid security reconnaissance.',
+    'vip-sqli-scanner-dashboard': 'Full-stack cybersecurity dashboard interface for the VIPSQLi vulnerability scanner engine.',
+    'Inkflow': 'AI-assisted handwriting synthesis engine and productivity document generator.',
+    'LLM-COUNCIL': 'Five-persona AI deliberation council that anonymously debates, peer-reviews, and renders non-hedging cybersecurity assessments.',
+    'DarkWin-NGASR': 'Modular security research and automation engine with 500+ scan modules and AI-driven classification.',
+    'PhishShield-Engine': 'AI-powered email security platform detecting phishing, lookalike domains, homograph attacks, and header spoofs.',
+    'OSINT-TOOLs': 'Curated toolkit and utilities designed for open-source intelligence practitioners and investigators.',
+    'BigBountyRecon': 'Automated recon methodology utilizing 66 Google dork techniques and open-source intelligence probes.',
+    'ParamSpider': 'URL mining utility querying web archives to extract parameter endpoints for fuzzing and bug bounty hunts.'
+  };
+
+  const CATEGORY_MAP = {
+    'ReconMaster': 'tools',
+    'VIPSQLi': 'tools',
+    'DarkWin-AATK': 'tools',
+    'vip-sqli-scanner-dashboard': 'tools',
+    'DarkWin-NGASR': 'tools',
+    'ParamSpider': 'recon',
+    'OSINT-TOOLs': 'recon',
+    'BigBountyRecon': 'recon',
+    'PhishShield-Engine': 'ai',
+    'LLM-COUNCIL': 'ai',
+    'Inkflow': 'ai'
+  };
+
+  const FALLBACK_REPOS = [
+    { name: 'ReconMaster', html_url: 'https://github.com/VIPHACKER100/ReconMaster', stargazers_count: 2, language: 'Python', category: 'tools' },
+    { name: 'VIPSQLi', html_url: 'https://github.com/VIPHACKER100/VIPSQLi', stargazers_count: 1, language: 'Python', category: 'tools' },
+    { name: 'DarkWin-AATK', html_url: 'https://github.com/VIPHACKER100/DarkWin-AATK', stargazers_count: 1, language: 'Python', category: 'tools' },
+    { name: 'vip-sqli-scanner-dashboard', html_url: 'https://github.com/VIPHACKER100/vip-sqli-scanner-dashboard', stargazers_count: 1, language: 'TypeScript', category: 'tools' },
+    { name: 'LLM-COUNCIL', html_url: 'https://github.com/VIPHACKER100/LLM-COUNCIL', stargazers_count: 0, language: 'Python', category: 'ai' },
+    { name: 'DarkWin-NGASR', html_url: 'https://github.com/VIPHACKER100/DarkWin-NGASR', stargazers_count: 1, language: 'Python', category: 'tools' },
+    { name: 'PhishShield-Engine', html_url: 'https://github.com/VIPHACKER100/PhishShield-Engine', stargazers_count: 1, language: 'Python', category: 'ai' },
+    { name: 'OSINT-TOOLs', html_url: 'https://github.com/VIPHACKER100/OSINT-TOOLs', stargazers_count: 0, language: 'HTML', category: 'recon' },
+    { name: 'Inkflow', html_url: 'https://github.com/VIPHACKER100/Inkflow', stargazers_count: 0, language: 'JavaScript', category: 'ai' }
+  ];
+
+  let currentRepoList = [];
+  let currentFilter = 'all';
+  let currentSearch = '';
+
+  function renderRepos() {
+    if (!container) return;
+
+    let filtered = currentRepoList.filter(repo => {
+      // Category filter
+      const category = CATEGORY_MAP[repo.name] || (repo.language === 'Python' ? 'tools' : 'ai');
+      if (currentFilter !== 'all' && category !== currentFilter) return false;
+
+      // Search filter
+      if (currentSearch) {
+        const query = currentSearch.toLowerCase();
+        const desc = (repo.description || DESCRIPTIONS[repo.name] || '').toLowerCase();
+        return repo.name.toLowerCase().includes(query) || desc.includes(query);
+      }
+      return true;
+    });
+
+    if (filtered.length === 0) {
+      container.innerHTML = `
+        <div class="tilt-card" style="grid-column: 1/-1; text-align: center; padding: 40px;">
+          <div style="color: var(--cyber-amber); font-size: 15px; margin-bottom: 8px;">[!] No matching security modules found</div>
+          <div style="color: var(--text-dim); font-size: 13px;">Try resetting search terms or selecting another category.</div>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = filtered.map(repo => {
+      const desc = repo.description || DESCRIPTIONS[repo.name] || 'Security engineering module engineered by VIPHACKER.100.';
+      const category = CATEGORY_MAP[repo.name] || 'tools';
+      const lang = repo.language || 'Code';
+      const stars = repo.stargazers_count || 0;
+      const isFork = repo.fork ? `<span class="repo-badge">[FORK]</span>` : '';
+
+      return `
+        <div class="tilt-card repo-card" data-category="${category}">
+          <div class="repo-card-top">
+            <div class="repo-card-header">
+              <div class="repo-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cyber-emerald)" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                ${repo.name} ${isFork}
+              </div>
+              <div class="repo-stars">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                ${stars}
+              </div>
+            </div>
+            <p class="repo-desc">${desc}</p>
+          </div>
+
+          <div class="repo-card-bottom">
+            <div class="repo-tags">
+              <span class="repo-tag">${lang}</span>
+              <span class="repo-tag">${category.toUpperCase()}</span>
+              <span class="repo-tag">VIPHACKER.100</span>
+            </div>
+            <div class="repo-links">
+              <a href="${repo.html_url}" class="repo-link" target="_blank" rel="noopener">
+                <span>Access Source</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // Rebind tilt listener
+    initCardTiltsInContainer(container);
+  }
+
+  function initCardTiltsInContainer(parent) {
+    parent.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -6;
+        const rotateY = ((x - centerX) / centerX) * 6;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateZ(4px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+      });
+    });
+  }
+
+  // Filter Buttons Hook
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFilter = btn.getAttribute('data-filter');
+      renderRepos();
+    });
+  });
+
+  // Search Input Hook
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      currentSearch = e.target.value;
+      renderRepos();
+    });
+  }
+
+  // Fetch Live GitHub Repos
+  Promise.all([
+    fetch('https://api.github.com/users/VIPHACKER100').then(r => r.ok ? r.json() : null).catch(() => null),
+    fetch('https://api.github.com/users/VIPHACKER100/repos?per_page=100&sort=updated').then(r => r.ok ? r.json() : null).catch(() => null)
+  ]).then(([userData, repoData]) => {
+    if (userData) {
+      const elRepos = document.getElementById('stat-repos');
+      const elFollowers = document.getElementById('stat-followers');
+      if (elRepos) elRepos.textContent = userData.public_repos;
+      if (elFollowers) elFollowers.textContent = userData.followers;
+    }
+
+    if (repoData && Array.isArray(repoData)) {
+      const live = repoData.filter(r => !BLOCK_LIST.includes(r.name));
+      currentRepoList = live;
+      const totalStars = live.reduce((acc, r) => acc + (r.stargazers_count || 0), 0);
+      const elStars = document.getElementById('stat-stars');
+      if (elStars) elStars.textContent = totalStars;
+
+      renderRepos();
+      if (syncStatus) {
+        syncStatus.innerHTML = `[+] <span style="color:var(--cyber-emerald)">LIVE SYNC ACTIVE</span> &bull; ${new Date().toLocaleTimeString()} &bull; api.github.com`;
+      }
+    } else {
+      useFallback();
+    }
+  }).catch(() => {
+    useFallback();
+  });
+
+  function useFallback() {
+    currentRepoList = FALLBACK_REPOS;
+    renderRepos();
+    const elRepos = document.getElementById('stat-repos');
+    const elStars = document.getElementById('stat-stars');
+    const elFollowers = document.getElementById('stat-followers');
+    if (elRepos) elRepos.textContent = FALLBACK_REPOS.length + '+';
+    if (elStars) elStars.textContent = '6+';
+    if (elFollowers) elFollowers.textContent = '12+';
+    if (syncStatus) {
+      syncStatus.innerHTML = `[*] <span style="color:var(--cyber-amber)">OFFLINE CACHE</span> &bull; Verified Repository Snapshot`;
+    }
+  }
+})();
+
+/* ==========================================================================
+   6. SKILL BARS ON SCROLL REVEAL
+   ========================================================================== */
+(function initSkillBarsReveal() {
+  const fills = document.querySelectorAll('.skill-bar-fill');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const targetWidth = entry.target.getAttribute('data-width') || '85%';
+        entry.target.style.width = targetWidth;
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  fills.forEach(fill => observer.observe(fill));
+})();
+
+/* ==========================================================================
+   7. NAVIGATION SPY & SCROLL PROGRESS BAR
+   ========================================================================== */
+(function initScrollNav() {
+  const progressBar = document.getElementById('scroll-progress');
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('#nav-links a');
+
+  window.addEventListener('scroll', () => {
+    // Progress Bar
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0;
+    if (progressBar) progressBar.style.width = `${progress}%`;
+
+    // Active Section Spy
+    let current = '';
+    sections.forEach(sec => {
+      const top = sec.offsetTop - 120;
+      if (window.scrollY >= top) {
+        current = sec.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
+  }, { passive: true });
+})();
+
+/* ==========================================================================
+   8. MOBILE DRAWER NAVIGATION
+   ========================================================================== */
+(function initMobileDrawer() {
+  const toggleBtn = document.getElementById('drawer-toggle');
+  const drawer = document.getElementById('mobile-drawer');
+  if (!toggleBtn || !drawer) return;
+
+  toggleBtn.addEventListener('click', () => {
+    drawer.classList.toggle('open');
+    CyberAudio.click();
+  });
+
+  drawer.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      drawer.classList.remove('open');
+    });
+  });
+})();
+
+/* ==========================================================================
+   9. QUICK COPY EMAIL & PHONE NUMBER
+   ========================================================================== */
+(function initCopyActions() {
+  // Email Copy
+  const emailTrigger = document.getElementById('copy-email-trigger');
+  const emailToast = document.getElementById('copy-toast');
+  if (emailTrigger && emailToast) {
+    emailTrigger.addEventListener('click', () => {
+      navigator.clipboard.writeText('viphacker.100.org@gmail.com').then(() => {
+        emailToast.style.display = 'block';
+        CyberAudio.success();
+        setTimeout(() => { emailToast.style.display = 'none'; }, 3000);
+      }).catch(() => {});
+    });
+  }
+
+  // Phone Copy
+  const phoneTrigger = document.getElementById('copy-phone-trigger');
+  const phoneToast = document.getElementById('copy-phone-toast');
+  if (phoneTrigger && phoneToast) {
+    phoneTrigger.addEventListener('click', () => {
+      navigator.clipboard.writeText('+917389718429').then(() => {
+        phoneToast.style.display = 'block';
+        CyberAudio.success();
+        setTimeout(() => { phoneToast.style.display = 'none'; }, 3000);
+      }).catch(() => {});
+    });
+  }
+})();
+
+/* Auto year in footer */
+const yearSpan = document.getElementById('year-span');
+if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 </script>
+
 </body>
 </html>
