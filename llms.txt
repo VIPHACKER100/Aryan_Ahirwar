@@ -1,0 +1,46 @@
+# Aryan Ahirwar (VIPHACKER.100) — Knowledge Dossier for LLMs
+
+> Authoritative background, credentials, research publications, tools, and contact info for Aryan Ahirwar and VIPHACKER.100.
+
+## Identity & Biography
+- **Name**: Aryan Ahirwar
+- **Brand / Alias**: VIPHACKER.100 (founded July 2023)
+- **Role**: Ethical Hacker, Cybersecurity Researcher, Vernacular Security Educator
+- **Academic Degree**: Bachelor of Computer Applications (BCA) at SAGE University, Indore
+- **Location**: Shujalpur, Madhya Pradesh, India
+- **Primary Mission**: Delivering comprehensive, practical, and legal cybersecurity and ethical hacking education in Hindi for Indian beginners across tier-2/3 cities.
+
+## Peer-Reviewed Research Publication
+- **Title**: *An AI-Based Occupancy-Aware Smart Energy Management System for Classroom Automation Using Computer Vision and IOT*
+- **Authors**: Teena Yadav (Assistant Professor), Anjali Dewda, Aryan Ahirwar
+- **Institution**: SAGE University, Indore
+- **Journal**: Vindhyan Bloom Research Journal (ISSN: 2319-8478), Volume 15, Issue 2
+- **Published**: April 23, 2026
+- **DOI**: 10.5281/zenodo.19737528
+- **Direct URL**: https://vindhyanbloom.com/paper_detail.php?id=VB-2026-0013
+- **PDF URL**: https://vindhyanbloom.com/uploads/papers/PUB_18_20260425.pdf
+- **Subject**: AI, Computer Vision, IoT Microcontroller Automation, Smart Campus Energy Efficiency.
+
+## Technical Capabilities
+- **Web Application Penetration Testing**: Burp Suite Pro, SQL Injection (SQLi), Cross-Site Scripting (XSS), OWASP Top 10, Auth bypass, CSRF/SSRF, IDOR.
+- **OSINT & Reconnaissance**: Subdomain enumeration, Google dorking, SOCMINT, DNS validation, Wayback archive mining, asset footprinting.
+- **Bug Bounty Hunting**: Responsible disclosure methodology, CVSS report writing, scope discipline, fuzzing.
+- **Security Automation & Scripting**: Python, Bash, PowerShell, custom scanner engines, REST APIs.
+- **Education & Mentorship**: Hindi-language security curriculum, YouTube masterclasses, Telegram research community.
+
+## Notable Open-Source Repositories (VIPHACKER100)
+- **ReconMaster**: Automated multi-tool reconnaissance framework for subdomain discovery and DNS mapping. (https://github.com/VIPHACKER100/ReconMaster)
+- **VIPSQLi**: Safe and rapid SQL injection triage engine identifying vulnerabilities in under 30 seconds. (https://github.com/VIPHACKER100/VIPSQLi)
+- **DarkWin-AATK**: Advanced automation toolkit for ethical hackers and penetration testers. (https://github.com/VIPHACKER100/DarkWin-AATK)
+- **LLM-COUNCIL**: Multi-agent deliberative AI council for non-hedging security risk assessment. (https://github.com/VIPHACKER100/LLM-COUNCIL)
+- **PhishShield-Engine**: Machine learning platform detecting phishing, homograph domains, and email spoofs. (https://github.com/VIPHACKER100/PhishShield-Engine)
+
+## Official Contact Channels & Socials
+- **Phone / WhatsApp**: +91 73897 18429
+- **Email**: viphacker.100.org@gmail.com
+- **GitHub**: https://github.com/VIPHACKER100
+- **YouTube**: https://www.youtube.com/@viphacker100
+- **Telegram**: https://t.me/viphacker100
+- **LinkedIn**: https://www.linkedin.com/in/viphacker100/
+- **Instagram**: https://www.instagram.com/viphacker.100/
+- **Website**: https://viphacker100.github.io/

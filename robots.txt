@@ -1,0 +1,33 @@
+# robots.txt for VIPHACKER.100 - Aryan Ahirwar Portfolio
+# Allow full indexing for search engines and generative AI agents
+
+User-agent: *
+Allow: /
+
+# Generative AI & LLM Search Crawlers (Explicitly Allowed for GEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# Sitemap Location
+Sitemap: https://viphacker100.github.io/sitemap.xml
