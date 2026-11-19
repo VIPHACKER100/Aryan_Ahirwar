@@ -1,0 +1,78 @@
+/* ==========================================================================
+   DESIGN TOKENS, ACCESSIBLE PALETTE & STANDARD SCROLLBARS
+   ========================================================================== */
+:root {
+  color-scheme: dark;
+
+  /* Core Surfaces */
+  --bg-deep: #05080c;
+  --bg-surface: #0a0f16;
+  --bg-card: rgba(11, 18, 28, 0.92);
+  --bg-card-elevated: rgba(15, 24, 38, 0.96);
+  --bg-input: rgba(7, 11, 17, 0.92);
+  --panel-border: rgba(0, 255, 136, 0.22);
+  --panel-border-subtle: rgba(136, 156, 179, 0.18);
+  --panel-border-bright: rgba(0, 255, 136, 0.58);
+
+  /* Cyber Accents */
+  --cyber-emerald: #00ff88;
+  --cyber-emerald-dark: #00d670;
+  --cyber-emerald-glow: rgba(0, 255, 136, 0.35);
+  --cyber-cyan: #00e5ff;
+  --cyber-cyan-glow: rgba(0, 229, 255, 0.32);
+  --cyber-amber: #ffb800;
+  --cyber-red: #ff5577;
+  --cyber-purple: #a855f7;
+  --cyber-purple-light: #d09cff;
+  --whatsapp-green: #25d366;
+
+  /* WCAG AA+ Text Contrast Scale on #05080c / #0b121c */
+  --text-main: #f0f6fc;   /* ~17.5:1 */
+  --text-dim: #a6b6c9;    /* ~9.2:1 */
+  --text-muted: #889cb3;  /* ~6.4:1 (passes WCAG 4.5:1 AA) */
+
+  /* Typography */
+  --font-display: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Inter', 'Noto Sans Devanagari', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Elevation & Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-hud: 0 10px 34px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--panel-border);
+  --shadow-glow: 0 0 24px rgba(0, 255, 136, 0.24);
+  --shadow-cyan-glow: 0 0 24px rgba(0, 229, 255, 0.22);
+
+  /* Scrollbar Tokens (>= 3:1 contrast against --bg-deep per WCAG 1.4.11) */
+  --scrollbar-thumb: #3f627e;
+  --scrollbar-track: #05080c;
+
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  scrollbar-width: thin;
+}
+
+/* Legacy WebKit scrollbar fallback gated behind @supports */
+@supports not (scrollbar-color: auto) {
+  :root {
+    scrollbar-width: auto;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--cyber-emerald);
+  }
+}

@@ -30,4 +30,4 @@ User-agent: cohere-ai
 Allow: /
 
 # Sitemap Location
-Sitemap: https://viphacker100.github.io/sitemap.xml
+Sitemap: https://aryanahirwar.in/sitemap.xml

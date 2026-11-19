@@ -1,0 +1,28 @@
+{
+  "name": "Aryan Ahirwar — VIPHACKER.100",
+  "short_name": "VIPHACKER.100",
+  "description": "3D Cybersecurity Portfolio, Research Portal & Hindi Security Education Hub of Aryan Ahirwar.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#05080c",
+  "theme_color": "#06090c",
+  "icons": [
+    {
+      "src": "./assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "./assets/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "./assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

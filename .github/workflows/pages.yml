@@ -1,0 +1,59 @@
+name: Validate & Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  validate-and-stage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate JSON and XML artifacts
+        run: |
+          python3 -c "import json; json.load(open('data/profile.json')); json.load(open('site.webmanifest'))"
+          python3 -c "import xml.etree.ElementTree as ET; ET.parse('sitemap.xml')"
+
+      - name: Verify no unsafe DOM HTML sink assignments in application scripts
+        run: |
+          if grep -rnE "\.(innerHTML|outerHTML)\s*=|document\.write\(" js/; then
+            echo "Unsafe DOM HTML sink detected in js/"
+            exit 1
+          fi
+
+      - name: Stage clean static deploy bundle
+        run: |
+          mkdir -p _site
+          cp index.html robots.txt sitemap.xml llms.txt site.webmanifest CNAME _site/
+          cp -r css js data assets research .well-known _site/
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: validate-and-stage
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

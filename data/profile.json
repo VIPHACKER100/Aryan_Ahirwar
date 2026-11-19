@@ -1,0 +1,183 @@
+{
+  "siteUrl": "https://aryanahirwar.in/",
+  "identity": {
+    "name": "Aryan Ahirwar",
+    "alias": "VIPHACKER.100",
+    "role": "Founder & CEO, VIPHACKER.100",
+    "tagline": "Cybersecurity Researcher, Ethical Hacker & Hindi-First Security Educator",
+    "degree": "Bachelor of Computer Applications (BCA)",
+    "institution": "SAGE University, Indore",
+    "location": "Shujalpur, Madhya Pradesh, India",
+    "founded": "2023-07",
+    "githubUser": "VIPHACKER100"
+  },
+  "contact": {
+    "phoneDisplay": "+91 73897 18429",
+    "phoneHref": "+917389718429",
+    "whatsappUrl": "https://wa.me/917389718429",
+    "email": "viphacker.100.org@gmail.com",
+    "web3formsAccessKey": "",
+    "socials": {
+      "github": "https://github.com/VIPHACKER100",
+      "linkedin": "https://www.linkedin.com/in/viphacker100/",
+      "youtube": "https://www.youtube.com/@viphacker100",
+      "telegram": "https://t.me/viphacker100",
+      "instagram": "https://www.instagram.com/viphacker.100/"
+    }
+  },
+  "research": {
+    "id": "VB-2026-0013",
+    "title": "An AI-Based Occupancy-Aware Smart Energy Management System for Classroom Automation Using Computer Vision and IOT",
+    "authors": [
+      "Teena Yadav (Assistant Professor)",
+      "Anjali Dewda",
+      "Aryan Ahirwar"
+    ],
+    "affiliation": "SAGE University, Indore",
+    "journal": "Vindhyan Bloom Research Journal",
+    "section": "IT & Business Analytics",
+    "issn": "2319-8478",
+    "volume": "15",
+    "issue": "2",
+    "publishedDate": "2026-04-23",
+    "publishedDisplay": "23 Apr 2026",
+    "doi": "10.5281/zenodo.19737528",
+    "doiUrl": "https://doi.org/10.5281/zenodo.19737528",
+    "journalUrl": "https://vindhyanbloom.com/paper_detail.php?id=VB-2026-0013",
+    "pdfUrl": "https://vindhyanbloom.com/uploads/papers/PUB_18_20260425.pdf",
+    "localPage": "./research/smart-energy-iot.html",
+    "bibtex": "@article{yadav2026occupancy,\n  title     = {An AI-Based Occupancy-Aware Smart Energy Management System for Classroom Automation Using Computer Vision and IOT},\n  author    = {Yadav, Teena and Dewda, Anjali and Ahirwar, Aryan},\n  journal   = {Vindhyan Bloom Research Journal},\n  volume    = {15},\n  number    = {2},\n  year      = {2026},\n  month     = apr,\n  issn      = {2319-8478},\n  doi       = {10.5281/zenodo.19737528},\n  url       = {https://vindhyanbloom.com/paper_detail.php?id=VB-2026-0013}\n}",
+    "apa": "Yadav, T., Dewda, A., & Ahirwar, A. (2026). An AI-Based Occupancy-Aware Smart Energy Management System for Classroom Automation Using Computer Vision and IOT. Vindhyan Bloom Research Journal, 15(2). https://doi.org/10.5281/zenodo.19737528"
+  },
+  "repos": {
+    "blockList": [
+      "VIPBOMBER-V2",
+      "tbomb",
+      "SnapBrute",
+      "SocialMediaHackingToolkit",
+      "insta-hack",
+      "defacement",
+      "Activate_Microsoft_Office_All"
+    ],
+    "featuredOrder": [
+      "ReconMaster",
+      "VIPSQLi",
+      "DarkWin-AATK",
+      "LLM-COUNCIL",
+      "PhishShield-Engine",
+      "DarkWin-NGASR",
+      "vip-sqli-scanner-dashboard",
+      "OSINT-TOOLs",
+      "Inkflow"
+    ],
+    "descriptions": {
+      "ReconMaster": "Comprehensive reconnaissance framework integrating multiple security tools. Automates subdomain discovery, DNS validation, and asset mapping.",
+      "VIPSQLi": "Fast, accurate, and safe SQL injection triage tool that identifies real vulnerabilities in under 30 seconds without destructive payloads.",
+      "DarkWin-AATK": "Advanced Automation Toolkit tailored for ethical hackers, bug bounty researchers, and rapid security reconnaissance.",
+      "vip-sqli-scanner-dashboard": "Full-stack cybersecurity dashboard interface for the VIPSQLi vulnerability scanner engine.",
+      "Inkflow": "AI-assisted handwriting synthesis engine and productivity document generator.",
+      "LLM-COUNCIL": "Five-persona AI deliberation council that anonymously debates, peer-reviews, and renders non-hedging cybersecurity assessments.",
+      "DarkWin-NGASR": "Modular security research and automation engine with 500+ scan modules and AI-driven classification.",
+      "PhishShield-Engine": "AI-powered email security platform detecting phishing, lookalike domains, homograph attacks, and header spoofs.",
+      "OSINT-TOOLs": "Curated toolkit and utilities designed for open-source intelligence practitioners and investigators.",
+      "BigBountyRecon": "Automated recon methodology utilizing 66 Google dork techniques and open-source intelligence probes.",
+      "ParamSpider": "URL mining utility querying web archives to extract parameter endpoints for fuzzing and bug bounty hunts."
+    },
+    "categoryMap": {
+      "ReconMaster": "recon",
+      "VIPSQLi": "tools",
+      "DarkWin-AATK": "tools",
+      "vip-sqli-scanner-dashboard": "tools",
+      "DarkWin-NGASR": "tools",
+      "ParamSpider": "recon",
+      "OSINT-TOOLs": "recon",
+      "BigBountyRecon": "recon",
+      "PhishShield-Engine": "ai",
+      "LLM-COUNCIL": "ai",
+      "Inkflow": "ai"
+    },
+    "fallback": [
+      {
+        "name": "ReconMaster",
+        "html_url": "https://github.com/VIPHACKER100/ReconMaster",
+        "stargazers_count": 2,
+        "forks_count": 0,
+        "language": "Python",
+        "fork": false,
+        "updated_at": "2026-08-15T00:00:00Z"
+      },
+      {
+        "name": "VIPSQLi",
+        "html_url": "https://github.com/VIPHACKER100/VIPSQLi",
+        "stargazers_count": 1,
+        "forks_count": 0,
+        "language": "Python",
+        "fork": false,
+        "updated_at": "2026-08-10T00:00:00Z"
+      },
+      {
+        "name": "DarkWin-AATK",
+        "html_url": "https://github.com/VIPHACKER100/DarkWin-AATK",
+        "stargazers_count": 1,
+        "forks_count": 0,
+        "language": "Python",
+        "fork": false,
+        "updated_at": "2026-08-05T00:00:00Z"
+      },
+      {
+        "name": "LLM-COUNCIL",
+        "html_url": "https://github.com/VIPHACKER100/LLM-COUNCIL",
+        "stargazers_count": 1,
+        "forks_count": 0,
+        "language": "Python",
+        "fork": false,
+        "updated_at": "2026-07-28T00:00:00Z"
+      },
+      {
+        "name": "PhishShield-Engine",
+        "html_url": "https://github.com/VIPHACKER100/PhishShield-Engine",
+        "stargazers_count": 1,
+        "forks_count": 0,
+        "language": "Python",
+        "fork": false,
+        "updated_at": "2026-07-20T00:00:00Z"
+      },
+      {
+        "name": "DarkWin-NGASR",
+        "html_url": "https://github.com/VIPHACKER100/DarkWin-NGASR",
+        "stargazers_count": 1,
+        "forks_count": 0,
+        "language": "Python",
+        "fork": false,
+        "updated_at": "2026-07-12T00:00:00Z"
+      },
+      {
+        "name": "vip-sqli-scanner-dashboard",
+        "html_url": "https://github.com/VIPHACKER100/vip-sqli-scanner-dashboard",
+        "stargazers_count": 1,
+        "forks_count": 0,
+        "language": "TypeScript",
+        "fork": false,
+        "updated_at": "2026-07-04T00:00:00Z"
+      },
+      {
+        "name": "OSINT-TOOLs",
+        "html_url": "https://github.com/VIPHACKER100/OSINT-TOOLs",
+        "stargazers_count": 0,
+        "forks_count": 0,
+        "language": "HTML",
+        "fork": false,
+        "updated_at": "2026-06-18T00:00:00Z"
+      },
+      {
+        "name": "Inkflow",
+        "html_url": "https://github.com/VIPHACKER100/Inkflow",
+        "stargazers_count": 0,
+        "forks_count": 0,
+        "language": "JavaScript",
+        "fork": false,
+        "updated_at": "2026-06-10T00:00:00Z"
+      }
+    ]
+  }
+}

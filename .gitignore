@@ -1,4 +1,11 @@
-# design reference files (not part of the site)
+# Local design reference files (not part of the site)
 DESIGN-*.md
 design-tokens-*.json
 SKILL-*.md
+
+# Local agent tooling & backups
+.agents/
+skills-lock.json
+*.backup
+.DS_Store
+Thumbs.db
