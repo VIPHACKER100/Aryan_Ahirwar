@@ -1025,11 +1025,12 @@
       <div class="surface-card">
         <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate aria-labelledby="contact-form-heading">
           <h3 id="contact-form-heading" class="visually-hidden">Send a message to Aryan Ahirwar</h3>
+          <input type="hidden" name="access_key" value="05381494-db35-49a2-8202-b848c2888ec4">
 
-          <!-- Accessible Honeypot Spam Protection -->
+          <!-- Accessible Honeypot Spam Protection (Web3Forms compatible) -->
           <div class="visually-hidden" aria-hidden="true">
-            <label for="contact-botcheck">Leave this field empty</label>
-            <input type="text" id="contact-botcheck" name="botcheck" tabindex="-1" autocomplete="off">
+            <label for="contact-botcheck">Leave this unchecked</label>
+            <input type="checkbox" id="contact-botcheck" name="botcheck" tabindex="-1" autocomplete="off">
           </div>
 
           <div class="form-group">
@@ -1057,7 +1058,7 @@
               <line x1="22" y1="2" x2="11" y2="13"/>
               <polygon points="22 2 15 22 11 13 2 9 22 2"/>
             </svg>
-            Transmit Payload
+            <span id="contact-submit-label">Transmit Payload</span>
           </button>
 
           <div id="contact-form-status" class="form-status" role="status" aria-live="polite"></div>

@@ -8,6 +8,7 @@
 export function initContactForm(profile, audio) {
   const form = document.getElementById('contact-form');
   const submitBtn = document.getElementById('contact-submit-btn');
+  const submitLabel = document.getElementById('contact-submit-label');
   const statusEl = document.getElementById('contact-form-status');
   const fallbackActions = document.getElementById('contact-fallback-actions');
   if (!form || !statusEl) return;
@@ -76,9 +77,9 @@ export function initContactForm(profile, audio) {
     event.preventDefault();
     if (fallbackActions) fallbackActions.replaceChildren();
 
-    // Honeypot check
+    // Honeypot check (checkbox or text)
     const botField = form.querySelector('input[name="botcheck"]');
-    if (botField && botField.value.trim() !== '') {
+    if (botField && (botField.type === 'checkbox' ? botField.checked : botField.value.trim() !== '')) {
       setStatus('success', '[+] Transmission acknowledged.');
       form.reset();
       return;
@@ -100,7 +101,9 @@ export function initContactForm(profile, audio) {
     const subject = String(formData.get('subject') || '').trim();
     const message = String(formData.get('message') || '').trim();
 
-    const accessKey = (profile.contact.web3formsAccessKey || '').trim();
+    const accessKey = String(
+      formData.get('access_key') || profile.contact.web3formsAccessKey || ''
+    ).trim();
     if (!accessKey) {
       setStatus(
         'info',
@@ -111,10 +114,8 @@ export function initContactForm(profile, audio) {
       return;
     }
 
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Transmitting...';
-    }
+    if (submitBtn) submitBtn.disabled = true;
+    if (submitLabel) submitLabel.textContent = 'Transmitting...';
 
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
@@ -122,6 +123,7 @@ export function initContactForm(profile, audio) {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           access_key: accessKey,
+          name,
           from_name: name,
           email,
           subject: `[VIPHACKER.100] ${subject}`,
@@ -147,10 +149,8 @@ export function initContactForm(profile, audio) {
       renderDirectFallback(name, email, subject, message);
       audio.error();
     } finally {
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Transmit Payload';
-      }
+      if (submitBtn) submitBtn.disabled = false;
+      if (submitLabel) submitLabel.textContent = 'Transmit Payload';
     }
   });
 }

@@ -45,9 +45,9 @@ Then open `http://localhost:8080`.
 
 ## Configuration Notes
 
-1. **Enable Direct Contact Form Delivery (Web3Forms)**:
-   - Create a free access key at [web3forms.com](https://web3forms.com/) and paste it into `contact.web3formsAccessKey` inside `data/profile.json`.
-   - Until a key is configured, the form automatically prepares a formatted payload with one-click **WhatsApp**, **Email App**, and **Copy Message** buttons so no inquiry is ever lost.
+1. **Direct Contact Form Delivery (Web3Forms)**:
+   - Configured with your Web3Forms access key in `index.html` (no-JS progressive fallback) and `data/profile.json` (`contact.web3formsAccessKey`).
+   - Submissions relay directly via AJAX (`https://api.web3forms.com/submit`) with honeypot spam protection, and gracefully fall back to one-click **WhatsApp**, **Email App**, and **Copy Message** buttons if the network or relay is unreachable.
 2. **Custom Domain (`aryanahirwar.in`)**:
    - All canonical URLs, Open Graph/Twitter cards, `sitemap.xml`, `robots.txt`, `llms.txt`, `.well-known/security.txt`, `assets/og-card.png`, and `CNAME` are configured for `https://aryanahirwar.in/`.
    - All internal asset links remain relative (`./...`), so local previews and staging paths work seamlessly.
