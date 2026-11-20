@@ -13,6 +13,8 @@ export function initContactForm(profile, audio) {
   const fallbackActions = document.getElementById('contact-fallback-actions');
   if (!form || !statusEl) return;
 
+  // Enable custom JS validation messaging while preserving native validation when JS is unavailable
+  form.noValidate = true;
   const fields = Array.from(form.querySelectorAll('input[required], textarea[required]'));
 
   // Clear aria-invalid as the user fixes input; validate on blur once edited
@@ -98,7 +100,7 @@ export function initContactForm(profile, audio) {
     const formData = new FormData(form);
     const name = String(formData.get('name') || '').trim();
     const email = String(formData.get('email') || '').trim();
-    const subject = String(formData.get('subject') || '').trim();
+    const subject = String(formData.get('subject') || '').trim() || 'Portfolio Inquiry';
     const message = String(formData.get('message') || '').trim();
 
     const accessKey = String(
@@ -118,18 +120,19 @@ export function initContactForm(profile, audio) {
     if (submitLabel) submitLabel.textContent = 'Transmitting...';
 
     try {
+      // Use FormData (CORS simple request, no OPTIONS preflight) per Web3Forms best practice
+      const payload = new FormData();
+      payload.append('access_key', accessKey);
+      payload.append('name', name);
+      payload.append('from_name', name);
+      payload.append('email', email);
+      payload.append('subject', `[VIPHACKER.100] ${subject}`);
+      payload.append('message', message);
+
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          access_key: accessKey,
-          name,
-          from_name: name,
-          email,
-          subject: `[VIPHACKER.100] ${subject}`,
-          message,
-        }),
-        signal: AbortSignal.timeout(8000),
+        body: payload,
+        signal: AbortSignal.timeout(10000),
       });
 
       const result = await response.json();
